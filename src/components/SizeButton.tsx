@@ -1,24 +1,22 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {useDispatch} from 'react-redux';
-import {setOption} from '../storage/options';
+import {Colors, Fonts} from '../../constants';
 
-//@ts-ignore
-const SizeButton = props => {
-  const {option, selectDeck, active, selectActive} = props;
+type SizeButtonParams = {
+  option: number;
+};
+
+type SizeButtonProps = SizeButtonParams & {selectDeckSize: () => void};
+export const SizeButton = ({option, selectDeckSize}: SizeButtonProps) => {
   const [selected, setSelected] = useState(false);
-  const dispatch = useDispatch();
 
   const handlePress = () => {
-    if (active === false) {
-      selectActive(true);
+    if (selected === false) {
       setSelected(true);
-      dispatch(setOption({name: 'size', option: option}));
     } else {
-      selectActive(false);
       setSelected(false);
     }
-    selectDeck();
+    selectDeckSize();
   };
 
   return (
@@ -32,10 +30,10 @@ const SizeButton = props => {
 
 const styles = StyleSheet.create({
   button: {
-    borderColor: '#a9a9a9',
+    borderColor: Colors.borderBottomColor,
     height: 50,
     width: 75,
-    backgroundColor: '#ffffff',
+    backgroundColor: Colors.backgroundColor,
     margin: 10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -44,10 +42,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   activeButton: {
-    borderColor: '#a9a9a9',
+    borderColor: Colors.borderBottomColor,
     height: 50,
     width: 75,
-    backgroundColor: '#1C0732',
+    backgroundColor: Colors.selectButtonActiveColor,
     margin: 10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -56,11 +54,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   text: {
-    fontSize: 13,
+    fontSize: Fonts.productFont,
   },
   activeText: {
-    color: '#ffffff',
+    color: Colors.buttonTextColor,
   },
 });
-
-export default SizeButton;

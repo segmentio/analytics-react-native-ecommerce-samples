@@ -1,40 +1,118 @@
 import React from 'react';
 import {
-  Text,
   View,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
+  FlatList,
+  Image,
+  Text,
+  TouchableOpacity,
   ImageBackground,
+  StyleSheet,
+  StatusBar,
 } from 'react-native';
-import LogoComponent from '../components/LogoComponent';
-import CardContainer from './CardContainer';
-const image = require('../assets/seigaiha.png');
-const Home = () => {
+import {ProductData} from '../data/productInfo';
+import {LogoComponent} from '../components';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {Colors, Fonts} from '../../constants';
+import {HomeNavProp} from '../types';
+
+const backgroundImage = require('../assets/seigaiha.png');
+
+export type Item = {
+  productName: string;
+  source: any;
+  id: number;
+};
+
+//@ts-ignore
+const ProductCard = ({source, productName, onPress}) => (
+  <View style={styles.productCard}>
+    <TouchableOpacity onPress={onPress}>
+      <Image style={styles.image} source={source} />
+      <View style={styles.textContainer}>
+        <Text style={styles.text}>{productName}</Text>
+      </View>
+    </TouchableOpacity>
+  </View>
+);
+
+const Header = () => {
   return (
-    <View style={styles.safeArea}>
-      <ImageBackground source={image} style={styles.image} resizeMode="repeat">
-        <ScrollView>
-          <LogoComponent />
-          <View style={styles.titleContainer}>
-            <Text style={styles.title}>Shop Our Collection</Text>
-          </View>
-          <View>
-            <CardContainer />
-          </View>
-        </ScrollView>
-      </ImageBackground>
+    <View>
+      <LogoComponent />
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>Shop Our Collection</Text>
+      </View>
     </View>
   );
 };
 
+export const Home = ({navigation}: HomeNavProp) => {
+  // const navigation = useNavigation();
+
+  const onPress = (name: string) => {
+    navigation.navigate('Product Page', {
+      productName: name,
+    });
+  };
+
+  //not sure how to define item
+  //if you add the `Item` type I made at the top the `renderItem` prop in `FlatList` breaks
+  //@ts-ignore
+  const renderProductCard = ({item}) => {
+    return <ProductCard {...item} onPress={() => onPress(item.productName)} />;
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <ImageBackground source={backgroundImage} resizeMode="repeat">
+        <FlatList
+          data={ProductData}
+          renderItem={renderProductCard}
+          numColumns={2}
+          ListHeaderComponent={Header}
+        />
+      </ImageBackground>
+    </SafeAreaView>
+  );
+};
+
 const styles = StyleSheet.create({
-  safeArea: {flex: 1},
-  image: {
+  container: {
     flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  productCard: {
+    height: 220,
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: 150,
+    margin: 10,
+    borderRadius: 15,
+    backgroundColor: Colors.productCardBackgroundColor,
+  },
+  image: {
+    borderTopRightRadius: 8,
+    borderTopLeftRadius: 8,
+    height: 175,
+    width: 150,
+    marginBottom: 10,
+  },
+  textContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 1,
+    paddingLeft: 5,
+    paddingRight: 5,
+  },
+  text: {
+    fontSize: 13,
+    color: 'white',
+    fontWeight: 'bold',
   },
   title: {
-    fontSize: 23,
+    fontSize: Fonts.titleFont,
     textAlign: 'center',
     marginBottom: 10,
   },
@@ -46,4 +124,3 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 });
-export default Home;

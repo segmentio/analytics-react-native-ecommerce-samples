@@ -6,47 +6,38 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import CartComponent from '../components/CartComponent';
+import {CartComponent, LogoComponent} from '../components/';
 import {useSelector} from 'react-redux';
 import {RootState} from '../storage/configureStore';
-import LogoComponent from '../components/LogoComponent';
+import {Colors, Fonts, Design} from '../../constants';
+import {shippingPrice} from '../data/productInfo';
+import type {CartNavProp, Product} from '../types';
 
-//@ts-ignore
-const Cart = ({navigation}) => {
+export const Cart = ({navigation}: CartNavProp) => {
   const {products} = useSelector((state: RootState) => state.product);
   let initialPrice: number = 0;
   let tax: number = 0;
   let totalPrice: string = '';
-  let shipping: number = 14.99;
+  let shipping: number = shippingPrice;
   let purchasePrice: number = 0;
   let estimatedTax: string = '';
 
-  //@ts-ignore
-  products.forEach(product => {
-    let productPrice;
-    //@ts-ignore
-    if (product.grip === 'Jessup($5.00)') {
-      //@ts-ignore
-      productPrice = (product.price + 5) * product.quantity;
-      //@ts-ignore
-    } else if (product.grip === 'Mob($7.00)') {
-      //@ts-ignore
-      productPrice = (product.price + 7) * product.quantity;
+  products.forEach((product: Product) => {
+    if (product !== undefined) {
+      let productPrice =
+        (product.price + product.grip.price) * product.quantity;
+      tax = productPrice * 0.07;
+      purchasePrice = productPrice + tax + shipping;
+      estimatedTax = tax.toFixed(2);
+      totalPrice = purchasePrice.toFixed(2);
     }
-
-    //@ts-ignore
-    initialPrice = initialPrice + productPrice;
-    tax = initialPrice * 0.07;
-    purchasePrice = initialPrice + tax + shipping;
-    estimatedTax = tax.toFixed(2);
-    totalPrice = purchasePrice.toFixed(2);
   });
 
   const onPressCheckout = () => {
     navigation.navigate('Checkout');
   };
 
-  let cartCompenents = products.map((product, index) => {
+  let cartComponents = products.map((product: Product, index) => {
     return <CartComponent {...product} key={index} />;
   });
 
@@ -56,7 +47,7 @@ const Cart = ({navigation}) => {
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Cart</Text>
       </View>
-      <View style={styles.cartContainer}>{cartCompenents}</View>
+      <View style={styles.cartContainer}>{cartComponents}</View>
       <View style={styles.priceContainer}>
         <View style={styles.priceSection}>
           <Text style={styles.priceTitle}>Products: </Text>
@@ -89,14 +80,14 @@ const styles = StyleSheet.create({
   safeArea: {flex: 1},
   page: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: Colors.backgroundColor,
   },
   cartContainer: {
     flexDirection: 'column',
-    backgroundColor: '#ffffff',
+    backgroundColor: Colors.backgroundColor,
   },
   title: {
-    fontSize: 23,
+    fontSize: Fonts.titleFont,
     marginBottom: 10,
   },
   titleContainer: {
@@ -106,8 +97,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   lineView: {
-    borderBottomColor: '#d3d3d3',
-    borderBottomWidth: 1,
+    borderBottomColor: Colors.borderBottomColor,
+    borderBottomWidth: Design.lineWidth,
     width: 250,
     marginBottom: 20,
     marginTop: 10,
@@ -119,8 +110,8 @@ const styles = StyleSheet.create({
   buyButton: {
     width: 350,
     height: 50,
-    backgroundColor: '#52BD94',
-    borderRadius: 8,
+    backgroundColor: Colors.buyButtonBackgroundColor,
+    borderRadius: Design.borderRadius,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -129,9 +120,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   buyText: {
-    color: '#ffffff',
+    color: Colors.buttonTextColor,
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: Fonts.buyFont,
   },
   priceContainer: {
     flexDirection: 'column',
@@ -155,4 +146,3 @@ const styles = StyleSheet.create({
     marginBottom: 50,
   },
 });
-export default Cart;

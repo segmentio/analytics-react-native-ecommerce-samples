@@ -8,25 +8,23 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
-import LogoComponent from '../components/LogoComponent';
-
+import {LogoComponent} from '../components';
+import {Colors, Design, Fonts} from '../../constants';
+import {CheckoutNavProp} from '../types';
 const screenWidth = Dimensions.get('screen').width;
 
-//@ts-ignore
-const CheckoutPage = ({navigation}) => {
-  const [emailText, onChangeEmailText] = React.useState('Email');
-  const [nameText, onChangeNameText] = React.useState('Full Name');
-  const [addressText, onChangeAddressText] = React.useState('Street Address');
-  const [cityText, onChangeCityText] = React.useState('City');
-  const [stateText, onChangeStateText] = React.useState('State');
-  const [zipText, onChangeZipText] = React.useState('Zipcode');
+export const CheckoutPage = ({navigation}: CheckoutNavProp) => {
+  const [emailText, onChangeEmailText] = React.useState('');
+  const [nameText, onChangeNameText] = React.useState('');
+  const [addressText, onChangeAddressText] = React.useState('');
+  const [cityText, onChangeCityText] = React.useState('');
+  const [stateText, onChangeStateText] = React.useState('');
+  const [zipText, onChangeZipText] = React.useState('');
 
-  const [paymentNameText, onChangePaymentNameText] =
-    React.useState('Name on Card');
-  const [cardNumberText, onChangeCardNumberText] =
-    React.useState('Card Number');
-  const [expirationText, onChangeExpirationText] = React.useState('Exp. Date.');
-  const [cvcText, onChangeCvcText] = React.useState('cvc');
+  const [paymentNameText, onChangePaymentNameText] = React.useState('');
+  const [cardNumberText, onChangeCardNumberText] = React.useState('');
+  const [expirationText, onChangeExpirationText] = React.useState('');
+  const [cvcText, onChangeCvcText] = React.useState('');
 
   const onPressCheckout = () => {
     navigation.navigate('Order Completed');
@@ -45,6 +43,7 @@ const CheckoutPage = ({navigation}) => {
             style={styles.nameInput}
             onChangeText={onChangeEmailText}
             value={emailText}
+            placeholder={'Email'}
           />
         </View>
         <View style={styles.shippingSection}>
@@ -53,6 +52,7 @@ const CheckoutPage = ({navigation}) => {
             style={styles.nameInput}
             onChangeText={onChangeNameText}
             value={nameText}
+            placeholder={'Full Name'}
           />
         </View>
         <View style={styles.shippingSection}>
@@ -61,6 +61,7 @@ const CheckoutPage = ({navigation}) => {
             style={styles.nameInput}
             onChangeText={onChangeAddressText}
             value={addressText}
+            placeholder={'Street Address'}
           />
         </View>
         <View style={styles.addressSection}>
@@ -70,6 +71,7 @@ const CheckoutPage = ({navigation}) => {
               style={styles.cityInput}
               onChangeText={onChangeCityText}
               value={cityText}
+              placeholder={'City'}
             />
           </View>
           <View style={styles.shippingSection}>
@@ -78,6 +80,7 @@ const CheckoutPage = ({navigation}) => {
               style={styles.stateInput}
               onChangeText={onChangeStateText}
               value={stateText}
+              placeholder={'State'}
             />
           </View>
           <View style={styles.shippingSection}>
@@ -86,6 +89,7 @@ const CheckoutPage = ({navigation}) => {
               style={styles.zipInput}
               onChangeText={onChangeZipText}
               value={zipText}
+              placeholder={'Zipcode'}
             />
           </View>
         </View>
@@ -100,6 +104,7 @@ const CheckoutPage = ({navigation}) => {
             style={styles.nameInput}
             onChangeText={onChangePaymentNameText}
             value={paymentNameText}
+            placeholder={'Name on Card'}
           />
         </View>
         <View style={styles.shippingSection}>
@@ -108,6 +113,7 @@ const CheckoutPage = ({navigation}) => {
             style={styles.nameInput}
             onChangeText={onChangeCardNumberText}
             value={cardNumberText}
+            placeholder={'Card Number'}
           />
         </View>
         <View style={styles.paymentSection}>
@@ -117,6 +123,7 @@ const CheckoutPage = ({navigation}) => {
               style={styles.expInput}
               onChangeText={onChangeExpirationText}
               value={expirationText}
+              placeholder={'Exp. Date.'}
             />
           </View>
           <View style={styles.cvcSection}>
@@ -125,6 +132,7 @@ const CheckoutPage = ({navigation}) => {
               style={styles.cvcInput}
               onChangeText={onChangeCvcText}
               value={cvcText}
+              placeholder={'cvc'}
             />
           </View>
         </View>
@@ -143,16 +151,16 @@ const styles = StyleSheet.create({
   safeArea: {flex: 1},
   page: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: Colors.backgroundColor,
   },
   title: {
-    fontSize: 23,
+    fontSize: Fonts.titleFont,
     textAlign: 'center',
     marginBottom: 10,
   },
   lineView: {
-    borderBottomColor: '#d3d3d3',
-    borderBottomWidth: 1,
+    borderBottomColor: Colors.borderBottomColor,
+    borderBottomWidth: Design.checkoutBorder,
     width: 250,
     justifyContent: 'center',
     marginBottom: 20,
@@ -179,18 +187,18 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   shippingTitle: {
-    fontSize: 10,
+    fontSize: Fonts.shippingTitle,
     fontWeight: 'bold',
     marginBottom: 3,
     marginLeft: 3,
   },
   nameInput: {
     width: screenWidth / 1.3,
-    borderWidth: 1,
+    borderWidth: Design.checkoutBorder,
     paddingLeft: 5,
     height: 30,
-    borderColor: '#d3d3d3',
-    color: '#d3d3d3',
+    borderColor: Colors.borderBottomColor,
+    color: Colors.borderBottomColor,
   },
   addressSection: {
     flexDirection: 'row',
@@ -200,43 +208,43 @@ const styles = StyleSheet.create({
   },
   cityInput: {
     width: screenWidth / 3.5,
-    borderWidth: 1,
+    borderWidth: Design.checkoutBorder,
     paddingLeft: 5,
     height: 30,
-    borderColor: '#d3d3d3',
-    color: '#d3d3d3',
+    borderColor: Colors.borderBottomColor,
+    color: Colors.borderBottomColor,
   },
   stateInput: {
     width: screenWidth / 6,
-    borderWidth: 1,
+    borderWidth: Design.checkoutBorder,
     paddingLeft: 5,
     height: 30,
-    borderColor: '#d3d3d3',
-    color: '#d3d3d3',
+    borderColor: Colors.borderBottomColor,
+    color: Colors.borderBottomColor,
   },
   zipInput: {
     width: screenWidth / 5,
-    borderWidth: 1,
+    borderWidth: Design.checkoutBorder,
     paddingLeft: 5,
     height: 30,
-    borderColor: '#d3d3d3',
-    color: '#d3d3d3',
+    borderColor: Colors.borderBottomColor,
+    color: Colors.borderBottomColor,
   },
   expInput: {
     width: screenWidth / 4,
-    borderWidth: 1,
+    borderWidth: Design.checkoutBorder,
     paddingLeft: 5,
     height: 30,
-    borderColor: '#d3d3d3',
-    color: '#d3d3d3',
+    borderColor: Colors.borderBottomColor,
+    color: Colors.borderBottomColor,
   },
   cvcInput: {
     width: screenWidth / 6,
-    borderWidth: 1,
+    borderWidth: Design.checkoutBorder,
     paddingLeft: 5,
     height: 30,
-    borderColor: '#d3d3d3',
-    color: '#d3d3d3',
+    borderColor: Colors.borderBottomColor,
+    color: Colors.borderBottomColor,
   },
   paymentSection: {
     flexDirection: 'row',
@@ -252,9 +260,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   buyText: {
-    color: '#ffffff',
+    color: Colors.buttonTextColor,
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: Fonts.buyFont,
   },
   bottomSection: {
     marginBottom: 50,
@@ -262,11 +270,9 @@ const styles = StyleSheet.create({
   buyButton: {
     width: screenWidth / 1.2,
     height: 50,
-    backgroundColor: '#52BD94',
-    borderRadius: 8,
+    backgroundColor: Colors.buyButtonBackgroundColor,
+    borderRadius: Design.borderRadius,
     alignItems: 'center',
     justifyContent: 'center',
   },
 });
-
-export default CheckoutPage;

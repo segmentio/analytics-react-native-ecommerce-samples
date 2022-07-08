@@ -1,41 +1,46 @@
 import React from 'react';
 import {View, StyleSheet, Image, Text, TouchableOpacity} from 'react-native';
 import {ProductInfo} from '../data/productInfo';
-import QuantityButton from './QuantityButton';
+import {QuantityButton} from './QuantityButton';
 import useQuantityHook from '../components/useQuantityHook';
+import {Colors, Fonts} from '../../constants';
+import {Product} from '../types';
 
-//@ts-ignore
-const CartComponent = product => {
+export const CartComponent = (product: Product) => {
   const {count, setCount} = useQuantityHook();
 
-  let productPrice = product.price;
-  if (product.grip === 'Jessup($5.00)') {
-    productPrice = (product.price + 5) * product.quantity;
-  } else if (product.grip === 'Mob($7.00)') {
-    productPrice = (product.price + 7) * product.quantity;
-  }
+  let productPrice = product.price + product.grip.price;
 
   return (
     <TouchableOpacity style={styles.component}>
       <View style={styles.productContainer}>
         <View style={styles.imageView}>
-          <Image style={styles.image} source={ProductInfo[product.name]} />
+          <Image
+            style={styles.image}
+            source={ProductInfo[product.name as keyof typeof ProductInfo]}
+          />
         </View>
         <View style={styles.descriptionContainer}>
           <Text style={styles.productTitle}>{product.name}</Text>
           <Text style={styles.productText}>Size: {product.size}</Text>
-          <Text style={styles.productText}>Grip: {product.grip}</Text>
+          <Text style={styles.productText}>Grip: {product.grip.name}</Text>
         </View>
       </View>
       <View style={styles.quantityContainer}>
         <QuantityButton
           isCheckout={true}
           currentCount={product.quantity}
-          isMinus={() => {
-            setCount(count - 1);
+          onDecrease={() => {
+            if (count !== undefined) {
+              setCount(count - 1);
+            }
           }}
-          isPlus={() => {
-            setCount(count + 1);
+          onIncrease={() => {
+            if (count === undefined) {
+              setCount(1);
+            } else {
+              setCount(count + 1);
+            }
           }}
         />
         <Text style={styles.price}>${productPrice}</Text>
@@ -76,12 +81,12 @@ const styles = StyleSheet.create({
   },
   productText: {
     textAlign: 'right',
-    fontSize: 10,
+    fontSize: Fonts.cartProductFont,
     fontWeight: 'bold',
     marginBottom: 5,
   },
   productTitle: {
-    fontSize: 10,
+    fontSize: Fonts.cartProductFont,
     fontWeight: 'bold',
     marginBottom: 5,
     textAlign: 'right',
@@ -97,12 +102,12 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   price: {
-    fontSize: 20,
+    fontSize: Fonts.cartPriceFont,
     textAlign: 'right',
     marginBottom: 5,
   },
   lineView: {
-    borderBottomColor: '#d3d3d3',
+    borderBottomColor: Colors.borderBottomColor,
     borderBottomWidth: 1,
     width: 350,
     marginBottom: 20,
@@ -114,5 +119,3 @@ const styles = StyleSheet.create({
     marginLeft: 50,
   },
 });
-
-export default CartComponent;

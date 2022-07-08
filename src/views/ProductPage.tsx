@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   Text,
   View,
@@ -9,40 +9,36 @@ import {
   Alert,
   Dimensions,
 } from 'react-native';
-import SizeButton from '../components/SizeButton';
-import GripButton from '../components/GripButton';
-import QuantityButton from '../components/QuantityButton';
+import {useSelector} from 'react-redux';
+import {RootState} from '../storage/configureStore';
+import {SizeButton, GripButton, QuantityButton} from '../components';
 import {deckSizes, gripOptions} from '../data/productInfo';
-import useQuantityHook from '../components/useQuantityHook';
-import useGripHook from '../components/useGripHook';
-import useDeckHook from '../components/useDeckHook';
+import {useGrip, useDeck, useQuantity} from '../hooks';
 import {useDispatch} from 'react-redux';
 import {setProduct} from '../storage/product';
 import {ProductInfo} from '../data/productInfo';
-import {setOption} from '../storage/options';
+import {Colors, Fonts, Design, productConstants} from '../../constants';
+import {Product, ProductNavProp} from '../types';
+
+const PRICE = '$60';
 const screenWidth = Dimensions.get('screen').width;
 
-//@ts-ignore
-const ProductPage = ({navigation, route}) => {
-  const {count, setCount} = useQuantityHook();
-  const {gripChoice, setGrip} = useGripHook();
-  const {deckChoice, setDeck} = useDeckHook();
-  const [isActive, setActive] = useState(false);
-  const dispatch = useDispatch();
+export const ProductPage = ({navigation, route}: ProductNavProp) => {
+  const {count, setCount} = useQuantity();
+  const {gripChoice, setGrip} = useGrip();
+  const {deckChoice, setDeck} = useDeck();
+  const {products} = useSelector((state: RootState) => state.product);
 
-  //@ts-ignore
-  let products = [];
+  const dispatch = useDispatch();
 
   let deckOptions = deckSizes.map((size, index) => {
     return (
       <SizeButton
-        selectDeck={() => {
+        selectDeckSize={() => {
           setDeck(size);
         }}
         option={size}
         key={index}
-        active={isActive}
-        selectActive={setActive}
       />
     );
   });
@@ -50,47 +46,38 @@ const ProductPage = ({navigation, route}) => {
   let gripChoices = gripOptions.map((option, index) => {
     return (
       <GripButton
-        active={isActive}
-        selectActive={setActive}
         selectGrip={() => {
           setGrip(option);
         }}
-        option={option}
+        {...option}
         key={index}
       />
     );
   });
 
   const addToCart = () => {
-    if (deckChoice === 0) {
+    if (deckChoice === undefined) {
       Alert.alert('Please select a size');
-    } else if (gripChoice === '') {
+    } else if (gripChoice === undefined) {
       Alert.alert('Please select a grip');
-    } else if (count === 0) {
+    } else if (count === undefined) {
       Alert.alert('Please select a quantity');
     } else {
-      let productInfo = {
-        name: route.params.name,
-        price: 60,
-        category: 'Skate Decks',
+      let product: Product = {
+        name: route.params.productName,
+        price: productConstants.price,
+        category: productConstants.category,
         size: deckChoice,
-        grip: gripChoice,
+        grip: {...gripChoice},
         quantity: count,
       };
-      products.push(productInfo);
-      //@ts-ignore
-      dispatch(setProduct(products));
+      dispatch(setProduct(product));
     }
-    setDeck(0);
-    setCount(0);
-    setGrip('');
-    setActive(false);
-    dispatch(setOption({name: 'size', option: 0}));
   };
 
   const onPressBuy = () => {
     addToCart();
-    if (products.length > 0) {
+    if (products !== undefined) {
       navigation.navigate('Cart');
     }
   };
@@ -98,12 +85,17 @@ const ProductPage = ({navigation, route}) => {
     <ScrollView>
       <View style={styles.productContainer}>
         <View style={styles.imageContainer}>
-          <Image style={styles.image} source={ProductInfo[route.params.name]} />
+          <Image
+            style={styles.image}
+            source={
+              ProductInfo[route.params.productName as keyof typeof ProductInfo]
+            }
+          />
         </View>
         <View style={styles.titleContainer}>
           <Text style={styles.category}>Category: Skate Decks</Text>
-          <Text style={styles.titleText}>{route.params.name}</Text>
-          <Text>$60</Text>
+          <Text style={styles.titleText}>{route.params.productName}</Text>
+          <Text>{PRICE}</Text>
         </View>
         <View style={styles.lineView} />
         <View style={styles.optionContainer}>
@@ -119,12 +111,19 @@ const ProductPage = ({navigation, route}) => {
           <Text style={styles.size}>Quantity</Text>
           <View style={styles.quantitySection}>
             <QuantityButton
-              currentCount={count}
-              isMinus={() => {
-                setCount(count - 1);
+              isCheckout={false}
+              currentCount={count || 0}
+              onDecrease={() => {
+                if (count !== undefined) {
+                  setCount(count - 1);
+                }
               }}
-              isPlus={() => {
-                setCount(count + 1);
+              onIncrease={() => {
+                if (count === undefined) {
+                  setCount(1);
+                } else {
+                  setCount(count + 1);
+                }
               }}
             />
           </View>
@@ -149,18 +148,18 @@ const styles = StyleSheet.create({
   safeArea: {flex: 1},
   page: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: Colors.backgroundColor,
   },
   productContainer: {
     flexDirection: 'column',
-    backgroundColor: '#ffffff',
+    backgroundColor: Colors.backgroundColor,
   },
   image: {
     height: 500,
     resizeMode: 'contain',
   },
   imageContainer: {
-    backgroundColor: '#ffffff',
+    backgroundColor: Colors.backgroundColor,
     shadowColor: 'black',
     shadowOpacity: 0.3,
     shadowRadius: 6,
@@ -172,15 +171,15 @@ const styles = StyleSheet.create({
   },
   titleText: {
     marginTop: 5,
-    fontSize: 25,
+    fontSize: Fonts.titleFont,
     fontWeight: 'bold',
     marginBottom: 5,
   },
   category: {
-    fontSize: 10,
+    fontSize: Fonts.categoryFont,
   },
   size: {
-    fontSize: 11,
+    fontSize: Fonts.sizeFont,
     marginLeft: 2,
   },
   optionContainer: {
@@ -188,7 +187,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   lineView: {
-    borderBottomColor: '#d3d3d3',
+    borderBottomColor: Colors.borderBottomColor,
     borderBottomWidth: 1,
     width: 'auto',
     justifyContent: 'center',
@@ -214,8 +213,8 @@ const styles = StyleSheet.create({
   buyButton: {
     width: screenWidth / 1.2,
     height: 50,
-    backgroundColor: '#52BD94',
-    borderRadius: 8,
+    backgroundColor: Colors.buyButtonBackgroundColor,
+    borderRadius: Design.borderRadius,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -224,19 +223,17 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   buyText: {
-    color: '#ffffff',
+    color: Colors.buttonTextColor,
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: Fonts.buyFont,
   },
   cartButton: {
     width: screenWidth / 1.2,
     height: 50,
-    backgroundColor: '#1C0732',
-    borderRadius: 8,
+    backgroundColor: Colors.cartButtonBackgroundColor,
+    borderRadius: Design.borderRadius,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 10,
   },
 });
-
-export default ProductPage;

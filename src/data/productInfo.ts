@@ -1,43 +1,53 @@
-export const productData = [
+export const ProductData = [
   {
     productName: 'Team Logo',
-    source: '../assets/decks/team-logo.png',
+    source: require('../assets/decks/team-logo.png'),
+    id: 1,
   },
   {
     productName: 'Wavelength',
-    source: '../assets/decks/wavelength.png',
+    source: require('../assets/decks/wavelength.png'),
+    id: 2,
   },
   {
     productName: 'Poppies',
-    source: '../assets/decks/poppies.png',
+    source: require('../assets/decks/poppies.png'),
+    id: 3,
   },
   {
     productName: 'Snow Cone',
-    source: '../assets/decks/snow-cone.png',
+    source: require('../assets/decks/snow-cone.png'),
+    id: 4,
   },
   {
     productName: 'Matchbox - Best',
-    source: '../assets/decks/matchbox-best.png',
+    source: require('../assets/decks/matchbox-best.png'),
+    id: 5,
   },
   {
     productName: 'Matchbow - Aeroflight',
-    source: '../assets/decks/matchbox-aeroflot.png',
+    source: require('../assets/decks/matchbox-aeroflot.png'),
+    id: 6,
   },
   {
     productName: 'Team Logo (black)',
-    source: '../assets/decks/black-logo.png',
+    source: require('../assets/decks/black-logo.png'),
+    id: 7,
   },
   {
     productName: 'Will Gabourel - Pro Model',
-    source: '../assets/decks/will-gabourel-pro-model.png',
+    source: require('../assets/decks/will-gabourel-pro-model.png'),
+    id: 8,
   },
   {
     productName: 'Matchbox - Night Walk',
-    source: '../assets/decks/matchbox-night-walk.png',
+    source: require('../assets/decks/matchbox-night-walk.png'),
+    id: 9,
   },
   {
     productName: 'Flow',
-    source: '../assets/decks/flow.png',
+    source: require('../assets/decks/flow.png'),
+    id: 10,
   },
 ];
 
@@ -55,4 +65,19 @@ export const ProductInfo = {
 };
 export const deckSizes = [7.75, 8.0, 8.125, 8.25, 8.375, 8.5, 8.75];
 
-export const gripOptions = ['No Thanks!', 'Jessup($5.00)', 'Mob($7.00)'];
+export const gripOptions = [
+  {
+    name: 'None',
+    price: 0,
+  },
+  {
+    name: 'Jessup',
+    price: 5,
+  },
+  {
+    name: 'Mob',
+    price: 7,
+  },
+];
+
+export const shippingPrice = 14.99;
