@@ -8,13 +8,15 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {LogoComponent} from '../components';
-import {Colors, Fonts, Design} from '../../constants';
+import {Colors, Fonts, Design} from '../constants';
 import {OrderNavProp} from '../types';
+import {homeRoute} from '../App';
+
 const screenWidth = Dimensions.get('screen').width;
 
 export const OrderCompletedPage = ({navigation}: OrderNavProp) => {
   const onPressHome = () => {
-    navigation.navigate('Home');
+    navigation.navigate(homeRoute);
   };
   return (
     <ScrollView style={styles.page}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Image} from 'react-native';
-import {Colors} from '../../constants';
+import {Colors} from '../constants';
 
 export const LogoComponent = () => {
   return (

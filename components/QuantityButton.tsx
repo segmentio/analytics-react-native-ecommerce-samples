@@ -1,28 +1,24 @@
 import React from 'react';
 import {View, StyleSheet, Text, Button} from 'react-native';
 
-export type QuantityButtonOptions = {
+export type QuantityButtonProps = {
   currentCount: number;
-  isCheckout: boolean;
-};
-
-export type QuantityButtonProps = QuantityButtonOptions & {
   onIncrease: () => void;
   onDecrease: () => void;
+  style?: object;
 };
 
 export const QuantityButton = ({
   currentCount,
   onIncrease,
   onDecrease,
-  isCheckout,
+  style,
 }: QuantityButtonProps) => {
   return (
-    <View
-      style={isCheckout ? styles.checkoutCounter : styles.quantityContainer}>
-      <Button onPress={onIncrease} title="+" />
-      <Text>{currentCount}</Text>
+    <View style={{...styles.quantityContainer, ...style}}>
       <Button onPress={onDecrease} title="-" />
+      <Text>{currentCount}</Text>
+      <Button onPress={onIncrease} title="+" />
     </View>
   );
 };

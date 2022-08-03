@@ -2,14 +2,40 @@ import React from 'react';
 import {View, StyleSheet, Image, Text, TouchableOpacity} from 'react-native';
 import {ProductInfo} from '../data/productInfo';
 import {QuantityButton} from './QuantityButton';
-import useQuantityHook from '../components/useQuantityHook';
-import {Colors, Fonts} from '../../constants';
+import {useQuantity} from '../hooks';
+import {Colors, Fonts} from '../constants';
+import {useDispatch} from 'react-redux';
+import {removeProduct} from '../storage/cart';
 import {Product} from '../types';
+const removeItemIcon = require('../assets/trash-can.png');
 
 export const CartComponent = (product: Product) => {
-  const {count, setCount} = useQuantityHook();
+  const {count, setCount} = useQuantity();
+
+  const dispatch = useDispatch();
 
   let productPrice = product.price + product.grip.price;
+
+  const onDecreaseQuantity = () => {
+    if (count !== undefined) {
+      if (count > 0) {
+        setCount(count - 1);
+      }
+    }
+  };
+
+  const onIncreaseQuantity = () => {
+    if (count === undefined) {
+      setCount(1);
+    } else {
+      setCount(count + 1);
+    }
+  };
+
+  const handleDelete = () => {
+    dispatch(removeProduct(product));
+    setCount(0);
+  };
 
   return (
     <TouchableOpacity style={styles.component}>
@@ -26,23 +52,18 @@ export const CartComponent = (product: Product) => {
           <Text style={styles.productText}>Grip: {product.grip.name}</Text>
         </View>
       </View>
-      <View style={styles.quantityContainer}>
-        <QuantityButton
-          isCheckout={true}
-          currentCount={product.quantity}
-          onDecrease={() => {
-            if (count !== undefined) {
-              setCount(count - 1);
-            }
-          }}
-          onIncrease={() => {
-            if (count === undefined) {
-              setCount(1);
-            } else {
-              setCount(count + 1);
-            }
-          }}
-        />
+      <View style={styles.bottomContainer}>
+        <View style={styles.quantityContainer}>
+          <QuantityButton
+            style={styles.checkoutCounter}
+            currentCount={count || 0}
+            onDecrease={onDecreaseQuantity}
+            onIncrease={onIncreaseQuantity}
+          />
+          <TouchableOpacity onPress={handleDelete}>
+            <Image style={styles.removeIcon} source={removeItemIcon} />
+          </TouchableOpacity>
+        </View>
         <Text style={styles.price}>${productPrice}</Text>
       </View>
       <View style={styles.lineContainer}>
@@ -91,7 +112,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     textAlign: 'right',
   },
-  quantityContainer: {
+  bottomContainer: {
     flexDirection: 'row',
     marginLeft: 20,
     justifyContent: 'space-between',
@@ -117,5 +138,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: 50,
+  },
+  checkoutCounter: {
+    borderWidth: 0,
+    flexDirection: 'row',
+    width: 75,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  removeIcon: {
+    height: 15,
+    width: 15,
+  },
+  quantityContainer: {
+    flexDirection: 'row',
+    width: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

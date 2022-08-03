@@ -3,17 +3,18 @@ import {
   Text,
   View,
   ScrollView,
-  Dimensions,
   StyleSheet,
   TouchableOpacity,
   TextInput,
+  useWindowDimensions,
 } from 'react-native';
 import {LogoComponent} from '../components';
-import {Colors, Design, Fonts} from '../../constants';
+import {Colors, Design, Fonts} from '../constants';
 import {CheckoutNavProp} from '../types';
-const screenWidth = Dimensions.get('screen').width;
+import {orderCompletedRoute} from '../App';
 
 export const CheckoutPage = ({navigation}: CheckoutNavProp) => {
+  const {styles} = useStyle();
   const [emailText, onChangeEmailText] = React.useState('');
   const [nameText, onChangeNameText] = React.useState('');
   const [addressText, onChangeAddressText] = React.useState('');
@@ -27,7 +28,7 @@ export const CheckoutPage = ({navigation}: CheckoutNavProp) => {
   const [cvcText, onChangeCvcText] = React.useState('');
 
   const onPressCheckout = () => {
-    navigation.navigate('Order Completed');
+    navigation.navigate(orderCompletedRoute);
   };
 
   return (
@@ -147,132 +148,139 @@ export const CheckoutPage = ({navigation}: CheckoutNavProp) => {
   );
 };
 
-const styles = StyleSheet.create({
-  safeArea: {flex: 1},
-  page: {
-    flex: 1,
-    backgroundColor: Colors.backgroundColor,
-  },
-  title: {
-    fontSize: Fonts.titleFont,
-    textAlign: 'center',
-    marginBottom: 10,
-  },
-  lineView: {
-    borderBottomColor: Colors.borderBottomColor,
-    borderBottomWidth: Design.checkoutBorder,
-    width: 250,
-    justifyContent: 'center',
-    marginBottom: 20,
-    marginTop: 10,
-  },
-  lineContainer: {
-    flexDirection: 'column',
-    width: 'auto',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  titleContainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    marginLeft: 20,
-  },
-  shippingContainer: {
-    width: screenWidth / 1.5,
-    marginLeft: 20,
-    marginTop: 10,
-    flexDirection: 'column',
-  },
-  shippingSection: {
-    marginBottom: 10,
-  },
-  shippingTitle: {
-    fontSize: Fonts.shippingTitle,
-    fontWeight: 'bold',
-    marginBottom: 3,
-    marginLeft: 3,
-  },
-  nameInput: {
-    width: screenWidth / 1.3,
-    borderWidth: Design.checkoutBorder,
-    paddingLeft: 5,
-    height: 30,
-    borderColor: Colors.borderBottomColor,
-    color: Colors.borderBottomColor,
-  },
-  addressSection: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: screenWidth / 1.3,
-    marginBottom: 20,
-  },
-  cityInput: {
-    width: screenWidth / 3.5,
-    borderWidth: Design.checkoutBorder,
-    paddingLeft: 5,
-    height: 30,
-    borderColor: Colors.borderBottomColor,
-    color: Colors.borderBottomColor,
-  },
-  stateInput: {
-    width: screenWidth / 6,
-    borderWidth: Design.checkoutBorder,
-    paddingLeft: 5,
-    height: 30,
-    borderColor: Colors.borderBottomColor,
-    color: Colors.borderBottomColor,
-  },
-  zipInput: {
-    width: screenWidth / 5,
-    borderWidth: Design.checkoutBorder,
-    paddingLeft: 5,
-    height: 30,
-    borderColor: Colors.borderBottomColor,
-    color: Colors.borderBottomColor,
-  },
-  expInput: {
-    width: screenWidth / 4,
-    borderWidth: Design.checkoutBorder,
-    paddingLeft: 5,
-    height: 30,
-    borderColor: Colors.borderBottomColor,
-    color: Colors.borderBottomColor,
-  },
-  cvcInput: {
-    width: screenWidth / 6,
-    borderWidth: Design.checkoutBorder,
-    paddingLeft: 5,
-    height: 30,
-    borderColor: Colors.borderBottomColor,
-    color: Colors.borderBottomColor,
-  },
-  paymentSection: {
-    flexDirection: 'row',
-    width: screenWidth / 1.3,
-    marginBottom: 20,
-  },
-  cvcSection: {
-    marginLeft: 10,
-    marginBottom: 10,
-  },
-  buyOptionContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-  },
-  buyText: {
-    color: Colors.buttonTextColor,
-    fontWeight: 'bold',
-    fontSize: Fonts.buyFont,
-  },
-  bottomSection: {
-    marginBottom: 50,
-  },
-  buyButton: {
-    width: screenWidth / 1.2,
-    height: 50,
-    backgroundColor: Colors.buyButtonBackgroundColor,
-    borderRadius: Design.borderRadius,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const useStyle = () => {
+  const dimensions = useWindowDimensions();
+  console.log('Logging dimensions', dimensions);
+
+  const styles = StyleSheet.create({
+    safeArea: {flex: 1},
+    page: {
+      flex: 1,
+      backgroundColor: Colors.backgroundColor,
+    },
+    title: {
+      fontSize: Fonts.titleFont,
+      textAlign: 'center',
+      marginBottom: 10,
+    },
+    lineView: {
+      borderBottomColor: Colors.borderBottomColor,
+      borderBottomWidth: Design.checkoutBorder,
+      width: 250,
+      justifyContent: 'center',
+      marginBottom: 20,
+      marginTop: 10,
+    },
+    lineContainer: {
+      flexDirection: 'column',
+      width: 'auto',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    titleContainer: {
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+      marginLeft: 20,
+    },
+    shippingContainer: {
+      // width: screenWidth / 1.5,
+      marginLeft: 20,
+      marginTop: 10,
+      flexDirection: 'column',
+    },
+    shippingSection: {
+      marginBottom: 10,
+    },
+    shippingTitle: {
+      fontSize: Fonts.shippingTitle,
+      fontWeight: 'bold',
+      marginBottom: 3,
+      marginLeft: 3,
+    },
+    nameInput: {
+      width: dimensions.width / 1.3,
+      borderWidth: Design.checkoutBorder,
+      paddingLeft: 5,
+      height: 30,
+      borderColor: Colors.borderBottomColor,
+      color: Colors.borderBottomColor,
+    },
+    addressSection: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      width: dimensions.width / 1.3,
+      marginBottom: 20,
+    },
+    cityInput: {
+      width: dimensions.width / 3.5,
+      borderWidth: Design.checkoutBorder,
+      paddingLeft: 5,
+      height: 30,
+      borderColor: Colors.borderBottomColor,
+      color: Colors.borderBottomColor,
+    },
+    stateInput: {
+      width: dimensions.width / 6,
+      borderWidth: Design.checkoutBorder,
+      paddingLeft: 5,
+      height: 30,
+      borderColor: Colors.borderBottomColor,
+      color: Colors.borderBottomColor,
+    },
+    zipInput: {
+      width: dimensions.width / 5,
+      borderWidth: Design.checkoutBorder,
+      paddingLeft: 5,
+      height: 30,
+      borderColor: Colors.borderBottomColor,
+      color: Colors.borderBottomColor,
+    },
+    expInput: {
+      width: dimensions.width / 4,
+      borderWidth: Design.checkoutBorder,
+      paddingLeft: 5,
+      height: 30,
+      borderColor: Colors.borderBottomColor,
+      color: Colors.borderBottomColor,
+    },
+    cvcInput: {
+      width: dimensions.width / 6,
+      borderWidth: Design.checkoutBorder,
+      paddingLeft: 5,
+      height: 30,
+      borderColor: Colors.borderBottomColor,
+      color: Colors.borderBottomColor,
+    },
+    paymentSection: {
+      flexDirection: 'row',
+      width: dimensions.width / 1.3,
+      marginBottom: 20,
+    },
+    cvcSection: {
+      marginLeft: 10,
+      marginBottom: 10,
+    },
+    buyOptionContainer: {
+      alignItems: 'center',
+      marginTop: 10,
+    },
+    buyText: {
+      color: Colors.buttonTextColor,
+      fontWeight: 'bold',
+      fontSize: Fonts.buyFont,
+    },
+    bottomSection: {
+      marginBottom: 50,
+    },
+    buyButton: {
+      width: dimensions.width / 1.2,
+      height: 50,
+      backgroundColor: Colors.buyButtonBackgroundColor,
+      borderRadius: Design.borderRadius,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+  });
+
+  return {styles};
+};

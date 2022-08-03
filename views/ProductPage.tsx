@@ -15,9 +15,9 @@ import {SizeButton, GripButton, QuantityButton} from '../components';
 import {deckSizes, gripOptions} from '../data/productInfo';
 import {useGrip, useDeck, useQuantity} from '../hooks';
 import {useDispatch} from 'react-redux';
-import {setProduct} from '../storage/product';
+import {addProduct} from '../storage/cart';
 import {ProductInfo} from '../data/productInfo';
-import {Colors, Fonts, Design, productConstants} from '../../constants';
+import {Colors, Fonts, Design, productConstants} from '../constants';
 import {Product, ProductNavProp} from '../types';
 
 const PRICE = '$60';
@@ -27,28 +27,42 @@ export const ProductPage = ({navigation, route}: ProductNavProp) => {
   const {count, setCount} = useQuantity();
   const {gripChoice, setGrip} = useGrip();
   const {deckChoice, setDeck} = useDeck();
-  const {products} = useSelector((state: RootState) => state.product);
+  const {products} = useSelector((state: RootState) => state.cart);
 
   const dispatch = useDispatch();
 
-  let deckOptions = deckSizes.map((size, index) => {
+  const deckOptions = deckSizes.map((size, index) => {
+    let active;
+    if (size === deckChoice) {
+      active = true;
+    } else {
+      active = false;
+    }
     return (
       <SizeButton
-        selectDeckSize={() => {
+        setActive={() => {
           setDeck(size);
         }}
         option={size}
         key={index}
+        active={active}
       />
     );
   });
 
-  let gripChoices = gripOptions.map((option, index) => {
+  const gripChoices = gripOptions.map((option, index) => {
+    let active;
+    if (option === gripChoice) {
+      active = true;
+    } else {
+      active = false;
+    }
     return (
       <GripButton
-        selectGrip={() => {
+        setActive={() => {
           setGrip(option);
         }}
+        active={active}
         {...option}
         key={index}
       />
@@ -71,7 +85,7 @@ export const ProductPage = ({navigation, route}: ProductNavProp) => {
         grip: {...gripChoice},
         quantity: count,
       };
-      dispatch(setProduct(product));
+      dispatch(addProduct(product));
     }
   };
 
@@ -81,6 +95,23 @@ export const ProductPage = ({navigation, route}: ProductNavProp) => {
       navigation.navigate('Cart');
     }
   };
+
+  const onDecreaseQuantity = () => {
+    if (count !== undefined) {
+      if (count > 0) {
+        setCount(count - 1);
+      }
+    }
+  };
+
+  const onIncreaseQuantity = () => {
+    if (count === undefined) {
+      setCount(1);
+    } else {
+      setCount(count + 1);
+    }
+  };
+
   return (
     <ScrollView>
       <View style={styles.productContainer}>
@@ -111,20 +142,9 @@ export const ProductPage = ({navigation, route}: ProductNavProp) => {
           <Text style={styles.size}>Quantity</Text>
           <View style={styles.quantitySection}>
             <QuantityButton
-              isCheckout={false}
               currentCount={count || 0}
-              onDecrease={() => {
-                if (count !== undefined) {
-                  setCount(count - 1);
-                }
-              }}
-              onIncrease={() => {
-                if (count === undefined) {
-                  setCount(1);
-                } else {
-                  setCount(count + 1);
-                }
-              }}
+              onDecrease={onDecreaseQuantity}
+              onIncrease={onIncreaseQuantity}
             />
           </View>
         </View>

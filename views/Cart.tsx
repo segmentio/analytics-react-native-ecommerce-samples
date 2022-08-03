@@ -9,32 +9,29 @@ import {
 import {CartComponent, LogoComponent} from '../components/';
 import {useSelector} from 'react-redux';
 import {RootState} from '../storage/configureStore';
-import {Colors, Fonts, Design} from '../../constants';
+import {Colors, Fonts, Design} from '../constants';
 import {shippingPrice} from '../data/productInfo';
 import type {CartNavProp, Product} from '../types';
+import {calculatePrice} from '../helpers';
+import {checkoutRoute} from '../App';
 
 export const Cart = ({navigation}: CartNavProp) => {
-  const {products} = useSelector((state: RootState) => state.product);
+  const {products} = useSelector((state: RootState) => state.cart);
   let initialPrice: number = 0;
-  let tax: number = 0;
   let totalPrice: string = '';
-  let shipping: number = shippingPrice;
-  let purchasePrice: number = 0;
   let estimatedTax: string = '';
 
   products.forEach((product: Product) => {
     if (product !== undefined) {
-      let productPrice =
-        (product.price + product.grip.price) * product.quantity;
-      tax = productPrice * 0.07;
-      purchasePrice = productPrice + tax + shipping;
-      estimatedTax = tax.toFixed(2);
-      totalPrice = purchasePrice.toFixed(2);
+      let calculatedPrice = calculatePrice(product);
+      totalPrice = calculatedPrice.totalPrice;
+      estimatedTax = calculatedPrice.estimatedTax;
+      initialPrice = initialPrice + product.price;
     }
   });
 
   const onPressCheckout = () => {
-    navigation.navigate('Checkout');
+    navigation.navigate(checkoutRoute);
   };
 
   let cartComponents = products.map((product: Product, index) => {
@@ -59,7 +56,7 @@ export const Cart = ({navigation}: CartNavProp) => {
         </View>
         <View style={styles.priceSection}>
           <Text style={styles.priceTitle}>Shipping: </Text>
-          <Text> $14.99</Text>
+          <Text> {shippingPrice}</Text>
         </View>
         <View style={styles.priceSection}>
           <Text style={styles.priceTitle}>Total: </Text>

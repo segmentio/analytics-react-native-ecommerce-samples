@@ -12,8 +12,9 @@ import {
 import {ProductData} from '../data/productInfo';
 import {LogoComponent} from '../components';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {Colors, Fonts} from '../../constants';
+import {Colors, Fonts} from '../constants';
 import {HomeNavProp} from '../types';
+import {productPageRoute} from '../App';
 
 const backgroundImage = require('../assets/seigaiha.png');
 
@@ -50,7 +51,7 @@ export const Home = ({navigation}: HomeNavProp) => {
   // const navigation = useNavigation();
 
   const onPress = (name: string) => {
-    navigation.navigate('Product Page', {
+    navigation.navigate(productPageRoute, {
       productName: name,
     });
   };

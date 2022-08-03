@@ -1,38 +1,31 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {Colors, Fonts} from '../../constants';
+import {Colors, Fonts} from '../constants';
+import {Grip} from '../types';
 
-type SizeButtonParams = {
-  option: number;
-};
+export type GripButton = Grip & {active: boolean} & {setActive: () => void};
 
-type SizeButtonProps = SizeButtonParams & {selectDeckSize: () => void};
-export const SizeButton = ({option, selectDeckSize}: SizeButtonProps) => {
-  const [selected, setSelected] = useState(false);
-
+export const GripButton = ({name, price, active, setActive}: GripButton) => {
   const handlePress = () => {
-    if (selected === false) {
-      setSelected(true);
-    } else {
-      setSelected(false);
-    }
-    selectDeckSize();
+    setActive();
   };
 
   return (
     <TouchableOpacity
-      style={selected ? styles.activeButton : styles.button}
+      style={active ? styles.activeButton : styles.button}
       onPress={handlePress}>
-      <Text style={selected ? styles.activeText : styles.text}>{option}</Text>
+      <Text style={active ? styles.activeText : styles.text}>
+        {name} ${price}
+      </Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    borderColor: Colors.borderBottomColor,
+    borderColor: Colors.selectButtonActiveColor,
     height: 50,
-    width: 75,
+    width: 125,
     backgroundColor: Colors.backgroundColor,
     margin: 10,
     justifyContent: 'center',
@@ -42,9 +35,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   activeButton: {
-    borderColor: Colors.borderBottomColor,
+    borderColor: Colors.selectButtonBorderColor,
     height: 50,
-    width: 75,
+    width: 125,
     backgroundColor: Colors.selectButtonActiveColor,
     margin: 10,
     justifyContent: 'center',

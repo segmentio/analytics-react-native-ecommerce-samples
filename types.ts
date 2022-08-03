@@ -54,7 +54,6 @@ export type Product = {
   quantity: number;
 };
 
-export type Products = Product[];
 export type ProductState = {products: Product[]};
 
 export type Grip = {name: string; price: number};
