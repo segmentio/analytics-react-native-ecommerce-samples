@@ -13,7 +13,7 @@ import {Colors, Fonts, Design} from '../constants';
 import {shippingPrice} from '../data/productInfo';
 import type {CartNavProp, Product} from '../types';
 import {calculatePrice} from '../helpers';
-import {checkoutRoute} from '../App';
+import {Routes} from '../routes';
 
 export const Cart = ({navigation}: CartNavProp) => {
   const {products} = useSelector((state: RootState) => state.cart);
@@ -22,16 +22,17 @@ export const Cart = ({navigation}: CartNavProp) => {
   let estimatedTax: string = '';
 
   products.forEach((product: Product) => {
+    console.log('CART PRODUCT', product);
     if (product !== undefined) {
       let calculatedPrice = calculatePrice(product);
       totalPrice = calculatedPrice.totalPrice;
       estimatedTax = calculatedPrice.estimatedTax;
-      initialPrice = initialPrice + product.price;
+      initialPrice += initialPrice + product.price;
     }
   });
 
   const onPressCheckout = () => {
-    navigation.navigate(checkoutRoute);
+    navigation.navigate(Routes.Checkout);
   };
 
   let cartComponents = products.map((product: Product, index) => {

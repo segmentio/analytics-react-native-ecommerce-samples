@@ -3,7 +3,7 @@ import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {Colors, Fonts} from '../constants';
 import {Grip} from '../types';
 
-export type GripButton = Grip & {active: boolean} & {setActive: () => void};
+export type GripButton = Grip & {active: boolean; setActive: () => void};
 
 export const GripButton = ({name, price, active, setActive}: GripButton) => {
   const handlePress = () => {

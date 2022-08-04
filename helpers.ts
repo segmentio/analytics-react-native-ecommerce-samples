@@ -5,10 +5,11 @@ type CalculatedPrices = {
   estimatedTax: string;
   totalPrice: string;
 };
-type calculatePrice = (product: Product) => CalculatedPrices;
-const taxRate = 0.07;
 
-export const calculatePrice: calculatePrice = (product: Product) => {
+type calculatePriceFunction = (product: Product) => CalculatedPrices;
+
+const taxRate = 0.07;
+export const calculatePrice: calculatePriceFunction = (product: Product) => {
   let productPrice = (product.price + product.grip.price) * product.quantity;
   let tax = productPrice * taxRate;
   let purchasePrice = productPrice + tax + shippingPrice;

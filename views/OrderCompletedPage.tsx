@@ -10,13 +10,13 @@ import {
 import {LogoComponent} from '../components';
 import {Colors, Fonts, Design} from '../constants';
 import {OrderNavProp} from '../types';
-import {homeRoute} from '../App';
+import {Routes} from '../routes';
 
 const screenWidth = Dimensions.get('screen').width;
 
 export const OrderCompletedPage = ({navigation}: OrderNavProp) => {
   const onPressHome = () => {
-    navigation.navigate(homeRoute);
+    navigation.navigate(Routes.Home);
   };
   return (
     <ScrollView style={styles.page}>

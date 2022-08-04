@@ -84,8 +84,10 @@ export const ProductPage = ({navigation, route}: ProductNavProp) => {
         size: deckChoice,
         grip: {...gripChoice},
         quantity: count,
+        id: Date.now(),
       };
       dispatch(addProduct(product));
+      console.log('ADD TO CART PRODUCTS', products);
     }
   };
 
@@ -93,13 +95,15 @@ export const ProductPage = ({navigation, route}: ProductNavProp) => {
     addToCart();
     if (products !== undefined) {
       navigation.navigate('Cart');
+      console.log('BUY PRODUCTS', products);
     }
   };
 
   const onDecreaseQuantity = () => {
     if (count !== undefined) {
       if (count > 0) {
-        setCount(count - 1);
+        //object possibly undefined according to compiler w/o `!`
+        setCount(currentCount => currentCount! - 1);
       }
     }
   };
@@ -108,7 +112,8 @@ export const ProductPage = ({navigation, route}: ProductNavProp) => {
     if (count === undefined) {
       setCount(1);
     } else {
-      setCount(count + 1);
+      //object possibly undefined according to compiler w/o `!`
+      setCount(currentCount => currentCount! + 1);
     }
   };
 

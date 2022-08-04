@@ -19,7 +19,7 @@ export const CartComponent = (product: Product) => {
   const onDecreaseQuantity = () => {
     if (count !== undefined) {
       if (count > 0) {
-        setCount(count - 1);
+        setCount(currentCount => currentCount! - 1);
       }
     }
   };
@@ -28,7 +28,8 @@ export const CartComponent = (product: Product) => {
     if (count === undefined) {
       setCount(1);
     } else {
-      setCount(count + 1);
+      //object possibly undefined according to compiler w/o `!`
+      setCount(currentCount => currentCount! + 1);
     }
   };
 
@@ -36,7 +37,6 @@ export const CartComponent = (product: Product) => {
     dispatch(removeProduct(product));
     setCount(0);
   };
-
   return (
     <TouchableOpacity style={styles.component}>
       <View style={styles.productContainer}>
@@ -56,7 +56,7 @@ export const CartComponent = (product: Product) => {
         <View style={styles.quantityContainer}>
           <QuantityButton
             style={styles.checkoutCounter}
-            currentCount={count || 0}
+            currentCount={product.quantity}
             onDecrease={onDecreaseQuantity}
             onIncrease={onIncreaseQuantity}
           />

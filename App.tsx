@@ -10,11 +10,7 @@ import {
   CheckoutPage,
   OrderCompletedPage,
 } from './views';
-export const homeRoute = 'Home';
-export const productPageRoute = 'Product Page';
-export const cartRoute = 'Cart';
-export const checkoutRoute = 'Checkout';
-export const orderCompletedRoute = 'Order Completed';
+import { Routes } from './routes';
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -23,15 +19,15 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name={homeRoute} component={Home} />
+          <Stack.Screen name={Routes.Home} component={Home} />
           <Stack.Screen
-            name={productPageRoute}
+            name={Routes.ProductPage}
             component={ProductPage}
             initialParams={{productName: ''}}
           />
-          <Stack.Screen name={cartRoute} component={Cart} />
-          <Stack.Screen name={checkoutRoute} component={CheckoutPage} />
-          <Stack.Screen name={orderCompletedRoute} component={OrderCompletedPage} />
+          <Stack.Screen name={Routes.Cart} component={Cart} />
+          <Stack.Screen name={Routes.Checkout} component={CheckoutPage} />
+          <Stack.Screen name={Routes.OrderCompleted} component={OrderCompletedPage} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

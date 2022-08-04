@@ -11,7 +11,7 @@ import {
 import {LogoComponent} from '../components';
 import {Colors, Design, Fonts} from '../constants';
 import {CheckoutNavProp} from '../types';
-import {orderCompletedRoute} from '../App';
+import {Routes} from '../routes';
 
 export const CheckoutPage = ({navigation}: CheckoutNavProp) => {
   const {styles} = useStyle();
@@ -28,7 +28,7 @@ export const CheckoutPage = ({navigation}: CheckoutNavProp) => {
   const [cvcText, onChangeCvcText] = React.useState('');
 
   const onPressCheckout = () => {
-    navigation.navigate(orderCompletedRoute);
+    navigation.navigate(Routes.OrderCompleted);
   };
 
   return (

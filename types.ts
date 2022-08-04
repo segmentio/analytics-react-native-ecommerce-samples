@@ -52,6 +52,7 @@ export type Product = {
   size: number;
   grip: Grip;
   quantity: number;
+  id: number;
 };
 
 export type ProductState = {products: Product[]};
