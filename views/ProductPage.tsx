@@ -105,7 +105,9 @@ export const ProductPage = ({navigation, route}: ProductNavProp) => {
       if (currentCount === undefined) {
         return 0;
       }
-      return currentCount - 1;
+      if (currentCount > 0) {
+        return currentCount - 1;
+      }
     });
   };
 
