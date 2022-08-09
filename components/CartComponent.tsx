@@ -2,41 +2,46 @@ import React from 'react';
 import {View, StyleSheet, Image, Text, TouchableOpacity} from 'react-native';
 import {ProductInfo} from '../data/productInfo';
 import {QuantityButton} from './QuantityButton';
-import {useQuantity} from '../hooks';
 import {Colors, Fonts} from '../constants';
 import {useDispatch} from 'react-redux';
-import {removeProduct} from '../storage/cart';
+import {
+  removeProduct,
+  addProduct,
+  decreaseProductQuantity,
+} from '../storage/cart';
 import {Product} from '../types';
 const removeItemIcon = require('../assets/trash-can.png');
 
 export const CartComponent = (product: Product) => {
-  const {count, setCount} = useQuantity();
-
   const dispatch = useDispatch();
 
   let productPrice = product.price + product.grip.price;
+  let productCount = product.quantity;
 
   const onDecreaseQuantity = () => {
-    if (count !== undefined) {
-      if (count > 0) {
-        setCount(currentCount => currentCount! - 1);
-      }
+    if (productCount === undefined) {
+      productCount = product.quantity;
+    }
+    if (productCount > 0) {
+      productCount = productCount - 1;
+      dispatch(decreaseProductQuantity(product));
+    } else {
+      dispatch(removeProduct(product));
     }
   };
 
   const onIncreaseQuantity = () => {
-    if (count === undefined) {
-      setCount(1);
-    } else {
-      //object possibly undefined according to compiler w/o `!`
-      setCount(currentCount => currentCount! + 1);
+    if (productCount === undefined) {
+      productCount = product.quantity;
     }
+    productCount = productCount + 1;
+    dispatch(addProduct(product));
   };
 
   const handleDelete = () => {
     dispatch(removeProduct(product));
-    setCount(0);
   };
+
   return (
     <TouchableOpacity style={styles.component}>
       <View style={styles.productContainer}>

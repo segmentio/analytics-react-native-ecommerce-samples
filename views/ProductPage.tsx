@@ -87,7 +87,9 @@ export const ProductPage = ({navigation, route}: ProductNavProp) => {
         id: Date.now(),
       };
       dispatch(addProduct(product));
-      console.log('ADD TO CART PRODUCTS', products);
+      setCount(0);
+      setGrip(undefined);
+      setDeck(undefined);
     }
   };
 
@@ -95,26 +97,25 @@ export const ProductPage = ({navigation, route}: ProductNavProp) => {
     addToCart();
     if (products !== undefined) {
       navigation.navigate('Cart');
-      console.log('BUY PRODUCTS', products);
     }
   };
 
   const onDecreaseQuantity = () => {
-    if (count !== undefined) {
-      if (count > 0) {
-        //object possibly undefined according to compiler w/o `!`
-        setCount(currentCount => currentCount! - 1);
+    setCount(currentCount => {
+      if (currentCount === undefined) {
+        return 0;
       }
-    }
+      return currentCount - 1;
+    });
   };
 
   const onIncreaseQuantity = () => {
-    if (count === undefined) {
-      setCount(1);
-    } else {
-      //object possibly undefined according to compiler w/o `!`
-      setCount(currentCount => currentCount! + 1);
-    }
+    setCount(currentCount => {
+      if (currentCount === undefined) {
+        return 1;
+      }
+      return currentCount + 1;
+    });
   };
 
   return (

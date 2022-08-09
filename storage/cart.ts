@@ -10,7 +10,7 @@ const cartSlice = createSlice({
   reducers: {
     addProduct(state, action: PayloadAction<Product>) {
       let newProduct: Product = action.payload;
-      if (state.products.length < 1 || state.products === undefined) {
+      if (state.products === undefined || state.products.length === 0) {
         state.products = [newProduct];
       } else {
         for (let product of state.products) {
@@ -32,8 +32,17 @@ const cartSlice = createSlice({
         product => product.id !== productRemoved,
       );
     },
+    decreaseProductQuantity(state, action: PayloadAction<Product>) {
+      for (let product of state.products) {
+        if (product.id === action.payload.id) {
+          product.quantity = product.quantity - 1;
+          return;
+        }
+      }
+    },
   },
 });
 
-export const {addProduct, removeProduct} = cartSlice.actions;
+export const {addProduct, removeProduct, decreaseProductQuantity} =
+  cartSlice.actions;
 export default cartSlice.reducer;

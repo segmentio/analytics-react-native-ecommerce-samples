@@ -22,7 +22,6 @@ export const Cart = ({navigation}: CartNavProp) => {
   let estimatedTax: string = '';
 
   products.forEach((product: Product) => {
-    console.log('CART PRODUCT', product);
     if (product !== undefined) {
       let calculatedPrice = calculatePrice(product);
       totalPrice = calculatedPrice.totalPrice;
