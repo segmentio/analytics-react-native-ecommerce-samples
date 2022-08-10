@@ -35,9 +35,8 @@ const cartSlice = createSlice({
     decreaseProductQuantity(state, action: PayloadAction<Number>) {
       for (let product of state.products) {
         if (product.id === action.payload) {
-          if (product.quantity > 0) {
+          if (product.quantity > 1) {
             product.quantity = product.quantity - 1;
-            return;
           } else {
             cartSlice.caseReducers.removeProduct(state, action);
           }
