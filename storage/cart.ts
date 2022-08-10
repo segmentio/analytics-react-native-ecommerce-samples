@@ -39,10 +39,7 @@ const cartSlice = createSlice({
             product.quantity = product.quantity - 1;
             return;
           } else {
-            let productRemoved = action.payload;
-            state.products = state.products.filter(
-              currentProduct => currentProduct.id !== productRemoved,
-            );
+            cartSlice.caseReducers.removeProduct(state, action);
           }
         }
       }
