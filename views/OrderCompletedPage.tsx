@@ -7,13 +7,16 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import LogoComponent from '../components/LogoComponent';
+import {LogoComponent} from '../components';
+import {Colors, Fonts, Design} from '../constants';
+import {OrderNavProp} from '../types';
+import {Routes} from '../routes';
+
 const screenWidth = Dimensions.get('screen').width;
 
-//@ts-ignore
-const OrderCompletedPage = ({navigation}) => {
+export const OrderCompletedPage = ({navigation}: OrderNavProp) => {
   const onPressHome = () => {
-    navigation.navigate('Home');
+    navigation.navigate(Routes.Home);
   };
   return (
     <ScrollView style={styles.page}>
@@ -44,10 +47,10 @@ const styles = StyleSheet.create({
   safeArea: {flex: 1},
   page: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: Colors.backgroundColor,
   },
   title: {
-    fontSize: 23,
+    fontSize: Fonts.titleFont,
     textAlign: 'center',
     marginBottom: 10,
   },
@@ -65,7 +68,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   orderText: {
-    fontSize: 15,
+    fontSize: Fonts.orderCompletedFont,
     lineHeight: 22,
     textAlign: 'center',
   },
@@ -73,9 +76,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buyText: {
-    color: '#ffffff',
+    color: Colors.buttonTextColor,
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: Fonts.buyFont,
     textAlign: 'center',
   },
   bottomSection: {
@@ -84,10 +87,9 @@ const styles = StyleSheet.create({
   homeButton: {
     width: screenWidth / 1.2,
     height: 50,
-    backgroundColor: '#52BD94',
-    borderRadius: 8,
+    backgroundColor: Colors.buyButtonBackgroundColor,
+    borderRadius: Design.borderRadius,
     alignItems: 'center',
     justifyContent: 'center',
   },
 });
-export default OrderCompletedPage;

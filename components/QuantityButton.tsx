@@ -1,16 +1,24 @@
 import React from 'react';
 import {View, StyleSheet, Text, Button} from 'react-native';
 
-//@ts-ignore
-const QuantityButton = props => {
-  const {currentCount, isMinus, isPlus, isCheckout} = props;
+export type QuantityButtonProps = {
+  currentCount: number;
+  onIncrease: () => void;
+  onDecrease: () => void;
+  style?: object;
+};
 
+export const QuantityButton = ({
+  currentCount,
+  onIncrease,
+  onDecrease,
+  style,
+}: QuantityButtonProps) => {
   return (
-    <View
-      style={isCheckout ? styles.checkoutCounter : styles.quantityContainer}>
-      <Button onPress={isPlus} title="+" />
+    <View style={{...styles.quantityContainer, ...style}}>
+      <Button onPress={onDecrease} title="-" />
       <Text>{currentCount}</Text>
-      <Button onPress={isMinus} title="-" />
+      <Button onPress={onIncrease} title="+" />
     </View>
   );
 };
@@ -32,5 +40,3 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
-export default QuantityButton;

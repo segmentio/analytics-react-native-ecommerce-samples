@@ -1,9 +1,8 @@
 import React from 'react';
-import {View, StyleSheet, Image, Dimensions} from 'react-native';
+import {View, StyleSheet, Image} from 'react-native';
+import {Colors} from '../constants';
 
-const screenWidth = Dimensions.get('screen').width;
-
-const LogoComponent = () => {
+export const LogoComponent = () => {
   return (
     <View style={styles.logoContainer}>
       <Image
@@ -18,7 +17,7 @@ const LogoComponent = () => {
 const styles = StyleSheet.create({
   logo: {
     alignItems: 'center',
-    width: screenWidth / 2,
+    width: 250,
     resizeMode: 'contain',
     height: 125,
   },
@@ -29,11 +28,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   lineView: {
-    borderBottomColor: '#d3d3d3',
+    borderBottomColor: Colors.borderBottomColor,
     borderBottomWidth: 1,
-    width: 250,
+    width: 275,
     justifyContent: 'center',
     marginBottom: 20,
   },
 });
-export default LogoComponent;
