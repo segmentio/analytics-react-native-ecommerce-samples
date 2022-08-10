@@ -18,22 +18,10 @@ export const CartComponent = (product: Product) => {
   let productPrice = product.price + product.grip.price;
 
   const onDecreaseQuantity = () => {
-    if (product.quantity === undefined) {
-      product.quantity = 0;
-    }
-    if (product.quantity > 0) {
-      product.quantity = product.quantity - 1;
-      dispatch(decreaseProductQuantity(product.id));
-    } else {
-      dispatch(removeProduct(product.id));
-    }
+    dispatch(decreaseProductQuantity(product.id));
   };
 
   const onIncreaseQuantity = () => {
-    if (product.quantity === undefined) {
-      product.quantity = 0;
-    }
-    product.quantity = product.quantity + 1;
     dispatch(addProduct(product));
   };
 
