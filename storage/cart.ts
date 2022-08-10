@@ -26,15 +26,15 @@ const cartSlice = createSlice({
         state.products = [...state.products, newProduct];
       }
     },
-    removeProduct(state, action: PayloadAction<Product>) {
-      let productRemoved = action.payload.id;
+    removeProduct(state, action: PayloadAction<Number>) {
+      let productRemoved = action.payload;
       state.products = state.products.filter(
         product => product.id !== productRemoved,
       );
     },
-    decreaseProductQuantity(state, action: PayloadAction<Product>) {
+    decreaseProductQuantity(state, action: PayloadAction<Number>) {
       for (let product of state.products) {
-        if (product.id === action.payload.id) {
+        if (product.id === action.payload) {
           product.quantity = product.quantity - 1;
           return;
         }
