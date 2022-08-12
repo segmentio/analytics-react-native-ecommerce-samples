@@ -17,6 +17,8 @@
     "@react-navigation/native-stack": "^6.6.2",
     "@reduxjs/toolkit": "^1.8.2",
     "@segment/analytics-react-native": "^2.7.0",
+    "@segment/analytics-react-native-plugin-advertising-id": "^1.0.2",
+    "@segment/analytics-react-native-plugin-idfa": "^0.4.1",
     "@segment/sovran-react-native": "^0.4.3",
     "react": "17.0.2",
     "react-native": "0.68.2",
