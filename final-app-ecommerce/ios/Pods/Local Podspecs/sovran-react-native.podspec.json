@@ -1,0 +1,31 @@
+{
+  "name": "sovran-react-native",
+  "version": "0.4.3",
+  "summary": "A cross-platform state management system",
+  "homepage": "https://github.com/segmentio/sovran-react-native#readme",
+  "license": "MIT",
+  "authors": "Segment <hello@segment.com> (https://segment.com/)",
+  "platforms": {
+    "ios": "11.0"
+  },
+  "source": {
+    "git": "https://segment.com.git",
+    "tag": "0.4.3"
+  },
+  "source_files": "ios/**/*.{h,m,mm,swift}",
+  "header_dir": "sovran-react-native",
+  "static_framework": true,
+  "pod_target_xcconfig": {
+    "USE_HEADERMAP": "YES",
+    "DEFINES_MODULE": "YES",
+    "SWIFT_COMPILATION_MODE": "wholemodule"
+  },
+  "user_target_xcconfig": {
+    "HEADER_SEARCH_PATHS": "\"${PODS_CONFIGURATION_BUILD_DIR}/sovran-react-native/Swift Compatibility Header\""
+  },
+  "dependencies": {
+    "React-Core": [
+
+    ]
+  }
+}

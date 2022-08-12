@@ -1,0 +1,6 @@
+module Pods_segmentShop_segmentShopTests {
+  umbrella header "Pods-segmentShop-segmentShopTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

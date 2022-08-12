@@ -48,16 +48,14 @@ const Header = () => {
 };
 
 export const Home = ({navigation}: HomeNavProp) => {
-  // const navigation = useNavigation();
 
+//@ts-ignore
   const onPress = (name: string) => {
     navigation.navigate(Routes.ProductPage, {
       productName: name,
     });
   };
 
-  //not sure how to define item
-  //if you add the `Item` type I made at the top the `renderItem` prop in `FlatList` breaks
   //@ts-ignore
   const renderProductCard = ({item}) => {
     return <ProductCard {...item} onPress={() => onPress(item.productName)} />;
