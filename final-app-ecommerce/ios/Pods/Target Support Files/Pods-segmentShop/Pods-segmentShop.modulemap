@@ -1,6 +1,0 @@
-module Pods_segmentShop {
-  umbrella header "Pods-segmentShop-umbrella.h"
-
-  export *
-  module * { export * }
-}

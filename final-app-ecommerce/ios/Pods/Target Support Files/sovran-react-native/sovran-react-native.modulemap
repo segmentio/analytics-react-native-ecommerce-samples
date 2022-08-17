@@ -1,6 +1,0 @@
-module sovran_react_native {
-  umbrella header "sovran-react-native-umbrella.h"
-
-  export *
-  module * { export * }
-}
