@@ -2,7 +2,7 @@ import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import type {RouteProp} from '@react-navigation/native';
 
 type RootStackParamList = {
-  Home: undefined;
+  'Segment Shop': undefined;
   'Skate Decks': {productName: string};
   Cart: undefined;
   Checkout: undefined;
@@ -12,8 +12,8 @@ type RootStackParamList = {
 
 export type Props = NativeStackScreenProps<RootStackParamList>;
 
-export type HomeNavProp = NativeStackScreenProps<RootStackParamList, 'Home'>;
-export type HomeRouteProp = RouteProp<RootStackParamList, 'Home'>;
+export type HomeNavProp = NativeStackScreenProps<RootStackParamList, 'Segment Shop'>;
+export type HomeRouteProp = RouteProp<RootStackParamList, 'Segment Shop'>;
 
 export type CardNavProp = NativeStackScreenProps<
   RootStackParamList,

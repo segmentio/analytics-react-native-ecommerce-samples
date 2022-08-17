@@ -3,5 +3,5 @@ export enum Routes {
   ProductPage = 'Skate Decks',
   Cart = 'Cart',
   Checkout = 'Checkout',
-  OrderCompleted = 'Order Completed!',
+  OrderCompleted = 'Order Completed',
 }

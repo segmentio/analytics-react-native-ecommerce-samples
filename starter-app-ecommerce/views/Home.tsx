@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   FlatList,
@@ -17,6 +17,7 @@ import {HomeNavProp} from '../types';
 import {Routes} from '../routes';
 
 const backgroundImage = require('../assets/seigaiha.png');
+
 
 export type Item = {
   productName: string;
@@ -49,8 +50,21 @@ const Header = () => {
 
 export const Home = ({navigation}: HomeNavProp) => {
 
-//@ts-ignore
+  useEffect(() => {
+    let trackProperties = {
+      category: 'Skate Decks',
+      products: ProductData,
+    };
+  });
+
   const onPress = (name: string) => {
+    let productProperties ={
+      brand: 'Red F',
+      category: 'Skate Decks',
+      name: name,
+      price: 60,
+    };
+
     navigation.navigate(Routes.ProductPage, {
       productName: name,
     });
