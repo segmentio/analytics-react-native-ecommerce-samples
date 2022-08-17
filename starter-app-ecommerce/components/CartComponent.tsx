@@ -4,19 +4,26 @@ import {ProductInfo} from '../data/productInfo';
 import {QuantityButton} from './QuantityButton';
 import {Colors, Fonts} from '../constants';
 import {useDispatch} from 'react-redux';
-import {
-  removeProduct,
-  addProduct,
-  decreaseProductQuantity,
-} from '../storage/cart';
+import { removeProduct, addProduct, decreaseProductQuantity } from '../storage/cart';
 import {Product} from '../types';
+import {useSelector} from 'react-redux';
+import {RootState} from '../storage/configureStore';
+
 const removeItemIcon = require('../assets/trash-can.png');
 
 export const CartComponent = (product: Product) => {
+  const {products, checkoutDetails} = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
 
   let productPrice = product.price + product.grip.price;
 
+  let orderUpdatedProperties = {
+    currency: 'USD',
+    product: product,
+    revenue: productPrice,
+    shipping: 14.99,
+    orderId: checkoutDetails.orderId,
+  }
   const onDecreaseQuantity = () => {
     dispatch(decreaseProductQuantity(product.id));
   };

@@ -1,11 +1,30 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import type {Product} from '../types';
-type CartState = {products: Product[]};
+import {calculatePrice} from '../helpers';
+import { gripOptions } from '../data/productInfo';
+type CartState = {products: Product[], checkoutDetails: checkoutDetails};
+
+type checkoutDetails = {
+  cartId?: string;
+  checkoutId?: string;
+  orderId?: string;
+  payment?: string;
+  shipping?: string;
+  currency?: string;
+}
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {
     products: [],
+    checkoutDetails: {
+      cartId: undefined,
+      checkoutId: undefined,
+      orderId: undefined,
+      payment: 'online',
+      shipping: 'standard',
+      currency: 'USD',
+    }
   } as CartState,
   reducers: {
     addProduct(state, action: PayloadAction<Product>) {
@@ -43,9 +62,18 @@ const cartSlice = createSlice({
         }
       }
     },
+    updateCart(state, action: PayloadAction<Number>) {
+      let cart = state.checkoutDetails;
+      if (cart.cartId === undefined) {
+        let id = action.payload.toString();
+        cart.cartId =  id.concat('-cart');
+        cart.checkoutId = id.concat('-checkout');
+        cart.orderId = id.concat('order');
+      }
+    }
   },
 });
 
-export const {addProduct, removeProduct, decreaseProductQuantity} =
+export const {addProduct, removeProduct, decreaseProductQuantity, updateCart} =
   cartSlice.actions;
 export default cartSlice.reducer;

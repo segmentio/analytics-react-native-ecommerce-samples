@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   Text,
   View,
@@ -15,7 +15,7 @@ import {SizeButton, GripButton, QuantityButton} from '../components';
 import {deckSizes, gripOptions} from '../data/productInfo';
 import {useGrip, useDeck, useQuantity} from '../hooks';
 import {useDispatch} from 'react-redux';
-import {addProduct} from '../storage/cart';
+import {addProduct, updateCart} from '../storage/cart';
 import {ProductInfo} from '../data/productInfo';
 import {Colors, Fonts, Design, productConstants} from '../constants';
 import {Product, ProductNavProp} from '../types';
@@ -30,6 +30,16 @@ export const ProductPage = ({navigation, route}: ProductNavProp) => {
   const {products} = useSelector((state: RootState) => state.cart);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    let trackProperties = {
+      name: route.params.productName,
+      price: productConstants.price,
+      category: productConstants.category,
+      brand: 'Red F'
+    }
+
+  })
 
   const deckOptions = deckSizes.map((size, index) => {
     let active;
@@ -95,6 +105,8 @@ export const ProductPage = ({navigation, route}: ProductNavProp) => {
 
   const onPressBuy = () => {
     addToCart();
+    let id = Date.now();
+    dispatch(updateCart(id));
     if (products !== undefined) {
       navigation.navigate('Cart');
     }

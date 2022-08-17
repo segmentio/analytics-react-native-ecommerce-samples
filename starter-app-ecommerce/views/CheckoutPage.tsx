@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   Text,
   View,
@@ -12,8 +12,12 @@ import {LogoComponent} from '../components';
 import {Colors, Design, Fonts} from '../constants';
 import {CheckoutNavProp} from '../types';
 import {Routes} from '../routes';
+import {useSelector} from 'react-redux';
+import {RootState} from '../storage/configureStore';
+import {calculatePrice} from '../helpers';
 
 export const CheckoutPage = ({navigation}: CheckoutNavProp) => {
+  const {products, checkoutDetails} = useSelector((state: RootState) => state.cart);
   const {styles} = useStyle();
   const [emailText, onChangeEmailText] = React.useState('');
   const [nameText, onChangeNameText] = React.useState('');
@@ -27,7 +31,46 @@ export const CheckoutPage = ({navigation}: CheckoutNavProp) => {
   const [expirationText, onChangeExpirationText] = React.useState('');
   const [cvcText, onChangeCvcText] = React.useState('');
 
+  useEffect(() => {
+    let checkoutProperties = {
+      checkoutId: checkoutDetails.checkoutId,
+      paymentMethod: checkoutDetails.payment,
+      shippingMethod: 'standard',
+      step: 1,
+    };
+  });
+
+  let initialPrice: number = 0;
+  let totalPrice: string = '';
+  let estimatedTax: string = '';
+
+  products.forEach((product => {
+    let calculatedPrice = calculatePrice(product);
+    totalPrice = calculatedPrice.totalPrice;
+    initialPrice = calculatedPrice.productPrice;
+    estimatedTax = calculatedPrice.estimatedTax;
+  }));
+
   const onPressCheckout = () => {
+    let paymentProperties = {
+      checkoutId: checkoutDetails.checkoutId,
+      paymentMethod: 'credit',
+      shippingMethod: 'standard',
+      step: 2
+    };
+    
+    let orderProperties = {
+      checkoutId: checkoutDetails.checkoutId,
+      orderId: checkoutDetails.orderId,
+      currency: checkoutDetails.currency,
+      products: products,
+      shipping: 14.99,
+      subtotal: initialPrice,
+      total: totalPrice,
+      revenue: totalPrice,
+      tax: estimatedTax,
+    };
+
     navigation.navigate(Routes.OrderCompleted);
   };
 

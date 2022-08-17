@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   Text,
   View,
@@ -14,23 +14,43 @@ import {shippingPrice} from '../data/productInfo';
 import type {CartNavProp, Product} from '../types';
 import {calculatePrice} from '../helpers';
 import {Routes} from '../routes';
+import {useDispatch} from 'react-redux';
+
+
 
 export const Cart = ({navigation}: CartNavProp) => {
-  const {products} = useSelector((state: RootState) => state.cart);
+  const {products, checkoutDetails} = useSelector((state: RootState) => state.cart);
+  const dispatch = useDispatch();
+
   let initialPrice: number = 0;
   let totalPrice: string = '';
   let estimatedTax: string = '';
+
+  useEffect(() => {
+    let cartProperties = {
+      cartId: checkoutDetails.cartId,
+      products: products,
+    }
+  });
 
   products.forEach((product: Product) => {
     if (product !== undefined) {
       let calculatedPrice = calculatePrice(product);
       totalPrice = calculatedPrice.totalPrice;
       estimatedTax = calculatedPrice.estimatedTax;
-      initialPrice += initialPrice + product.price;
+      initialPrice = initialPrice + calculatedPrice.productPrice;
     }
   });
 
   const onPressCheckout = () => {
+    let checkoutProperties = {
+      orderId: checkoutDetails.orderId,
+      currency: checkoutDetails.currency,
+      products: products,
+      shipping: 14.99,
+      tax: estimatedTax,
+      value: totalPrice,
+    }
     navigation.navigate(Routes.Checkout);
   };
 
