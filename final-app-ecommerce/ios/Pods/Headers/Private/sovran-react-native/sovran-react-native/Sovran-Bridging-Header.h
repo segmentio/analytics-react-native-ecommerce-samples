@@ -1,1 +1,0 @@
-../../../../../../node_modules/@segment/sovran-react-native/ios/Sovran-Bridging-Header.h

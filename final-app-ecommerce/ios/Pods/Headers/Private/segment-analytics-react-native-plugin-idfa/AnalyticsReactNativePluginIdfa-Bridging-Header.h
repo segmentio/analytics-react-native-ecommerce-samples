@@ -1,1 +1,0 @@
-../../../../../node_modules/@segment/analytics-react-native-plugin-idfa/ios/AnalyticsReactNativePluginIdfa-Bridging-Header.h
