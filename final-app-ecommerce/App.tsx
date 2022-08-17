@@ -19,15 +19,18 @@ import {
 
 import { IdfaPlugin } from '@segment/analytics-react-native-plugin-idfa';
 import { AdvertisingIdPlugin } from '@segment/analytics-react-native-plugin-advertising-id';
+import { FirebasePlugin } from '@segment/analytics-react-native-plugin-firebase';
 
 const segmentClient = createClient({
-  writeKey: 'QKoI2cHIPlixGDB358Y3T86tVqpaBZK3',
+  writeKey: 'WRITE_KEY',
   trackAppLifecycleEvents: true,
   collectDeviceId: true,
 });
 
 segmentClient.add({plugin: new IdfaPlugin()});
 segmentClient.add({plugin: new AdvertisingIdPlugin()});
+segmentClient.add({plugin: new FirebasePlugin()});
+
 const App = () => {
   const Stack = createNativeStackNavigator();
 
