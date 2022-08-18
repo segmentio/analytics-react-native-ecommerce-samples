@@ -25,7 +25,7 @@ yarn
 
 ```sh
 cd ios && pod install
-``
+```
 
 ```sh
 cd .. 
@@ -33,12 +33,12 @@ cd ..
 
 4. Build and run 
 
-iOS
+**iOS**
 ```sh
 yarn ios
 ```
 
-Android
+**Android**
 ```sh
 yarn android
 ```
