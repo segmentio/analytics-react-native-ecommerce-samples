@@ -1,0 +1,687 @@
+{
+	"data": {
+		"rules": [
+			{
+				"key": "Application Installed",
+				"type": "TRACK",
+				"version": 1,
+				"jsonSchema": {
+					"$schema": "http://json-schema.org/draft-07/schema#",
+					"type": "object",
+					"properties": {
+						"context": {},
+						"traits": {
+							"type": "object"
+						},
+						"properties": {
+							"type": "object",
+							"properties": {
+								"build": {
+									"description": "",
+									"id": "/properties/properties/properties/build",
+									"type": "string"
+								},
+								"version": {
+									"description": "",
+									"id": "/properties/properties/properties/version",
+									"type": "string"
+								}
+							}
+						}
+					}
+				},
+				"createdAt": "2022-08-17T19:58:37.000Z",
+				"updatedAt": "2022-08-17T19:58:37.000Z",
+				"deprecatedAt": "0001-01-01T00:00:00.000Z"
+			},
+			{
+				"key": "Application Opened",
+				"type": "TRACK",
+				"version": 1,
+				"jsonSchema": {
+					"$schema": "http://json-schema.org/draft-07/schema#",
+					"type": "object",
+					"properties": {
+						"context": {},
+						"traits": {
+							"type": "object"
+						},
+						"properties": {
+							"type": "object",
+							"properties": {
+								"build": {
+									"description": "",
+									"id": "/properties/properties/properties/build",
+									"type": "string"
+								},
+								"from_background": {
+									"description": "",
+									"id": "/properties/properties/properties/from_background",
+									"type": "boolean"
+								},
+								"referring_application": {
+									"description": "",
+									"id": "/properties/properties/properties/referring_application",
+									"type": "string"
+								},
+								"url": {
+									"description": "",
+									"id": "/properties/properties/properties/url",
+									"type": "string"
+								},
+								"version": {
+									"description": "",
+									"id": "/properties/properties/properties/version",
+									"type": "string"
+								}
+							}
+						}
+					}
+				},
+				"createdAt": "2022-08-17T19:58:37.000Z",
+				"updatedAt": "2022-08-17T19:58:37.000Z",
+				"deprecatedAt": "0001-01-01T00:00:00.000Z"
+			},
+			{
+				"key": "Cart Viewed",
+				"type": "TRACK",
+				"version": 1,
+				"jsonSchema": {
+					"$schema": "http://json-schema.org/draft-07/schema#",
+					"type": "object",
+					"properties": {
+						"context": {},
+						"traits": {
+							"type": "object"
+						},
+						"properties": {
+							"type": "object",
+							"properties": {
+								"cart_id": {
+									"description": "",
+									"id": "/properties/properties/properties/cart_id",
+									"type": "string"
+								},
+								"products": {
+									"description": "",
+									"id": "/properties/properties/properties/products",
+									"items": {
+										"description": "",
+										"id": "/properties/properties/properties/products/items",
+										"type": "object"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"createdAt": "2022-06-30T16:37:53.000Z",
+				"updatedAt": "2022-06-30T16:37:53.000Z",
+				"deprecatedAt": "0001-01-01T00:00:00.000Z"
+			},
+			{
+				"key": "Checkout Started",
+				"type": "TRACK",
+				"version": 1,
+				"jsonSchema": {
+					"$schema": "http://json-schema.org/draft-07/schema#",
+					"type": "object",
+					"properties": {
+						"context": {},
+						"traits": {
+							"type": "object"
+						},
+						"properties": {
+							"type": "object",
+							"properties": {
+								"currency": {
+									"description": "",
+									"id": "/properties/properties/properties/currency",
+									"type": "string"
+								},
+								"order_id": {
+									"description": "",
+									"id": "/properties/properties/properties/order_id",
+									"type": "string"
+								},
+								"products": {
+									"description": "",
+									"id": "/properties/properties/properties/products",
+									"type": "array"
+								},
+								"shipping": {
+									"description": "",
+									"id": "/properties/properties/properties/shipping",
+									"type": "number"
+								},
+								"tax": {
+									"description": "",
+									"id": "/properties/properties/properties/tax",
+									"type": "number"
+								},
+								"value": {
+									"description": "Revenue ($) with discounts and coupons added in. For better flexibility and total control over tracking, we let you decide how to calculate how coupons and discounts are applied",
+									"id": "/properties/properties/properties/value",
+									"type": "number"
+								}
+							}
+						}
+					}
+				},
+				"createdAt": "2022-06-30T16:37:53.000Z",
+				"updatedAt": "2022-06-30T16:37:53.000Z",
+				"deprecatedAt": "0001-01-01T00:00:00.000Z"
+			},
+			{
+				"key": "Checkout Step Completed",
+				"type": "TRACK",
+				"version": 1,
+				"jsonSchema": {
+					"$schema": "http://json-schema.org/draft-07/schema#",
+					"type": "object",
+					"properties": {
+						"context": {},
+						"traits": {
+							"type": "object"
+						},
+						"properties": {
+							"type": "object",
+							"properties": {
+								"checkout_id": {
+									"description": "",
+									"id": "/properties/properties/properties/checkout_id",
+									"type": "string"
+								},
+								"payment_method": {
+									"description": "",
+									"id": "/properties/properties/properties/payment_method",
+									"type": "string"
+								},
+								"shipping_method": {
+									"description": "",
+									"id": "/properties/properties/properties/shipping_method",
+									"type": "string"
+								},
+								"step": {
+									"description": "",
+									"id": "/properties/properties/properties/step",
+									"type": "number"
+								}
+							}
+						}
+					}
+				},
+				"createdAt": "2022-06-30T16:37:53.000Z",
+				"updatedAt": "2022-06-30T16:37:53.000Z",
+				"deprecatedAt": "0001-01-01T00:00:00.000Z"
+			},
+			{
+				"key": "Checkout Step Viewed",
+				"type": "TRACK",
+				"version": 1,
+				"jsonSchema": {
+					"$schema": "http://json-schema.org/draft-07/schema#",
+					"type": "object",
+					"properties": {
+						"context": {},
+						"traits": {
+							"type": "object"
+						},
+						"properties": {
+							"type": "object",
+							"properties": {
+								"checkout_id": {
+									"description": "",
+									"id": "/properties/properties/properties/checkout_id",
+									"type": "string"
+								},
+								"payment_method": {
+									"description": "",
+									"id": "/properties/properties/properties/payment_method",
+									"type": "string"
+								},
+								"shipping_method": {
+									"description": "",
+									"id": "/properties/properties/properties/shipping_method",
+									"type": "string"
+								},
+								"step": {
+									"description": "",
+									"id": "/properties/properties/properties/step",
+									"type": "number"
+								}
+							}
+						}
+					}
+				},
+				"createdAt": "2022-06-30T16:37:53.000Z",
+				"updatedAt": "2022-06-30T16:37:53.000Z",
+				"deprecatedAt": "0001-01-01T00:00:00.000Z"
+			},
+			{
+				"key": "Order Completed",
+				"type": "TRACK",
+				"version": 1,
+				"jsonSchema": {
+					"$schema": "http://json-schema.org/draft-07/schema#",
+					"type": "object",
+					"properties": {
+						"context": {},
+						"traits": {
+							"type": "object"
+						},
+						"properties": {
+							"type": "object",
+							"properties": {
+								"checkout_id": {
+									"description": "",
+									"id": "/properties/properties/properties/checkout_id",
+									"type": "string"
+								},
+								"currency": {
+									"description": "",
+									"id": "/properties/properties/properties/currency",
+									"type": "string"
+								},
+								"order_id": {
+									"description": "",
+									"id": "/properties/properties/properties/order_id",
+									"type": "string"
+								},
+								"products": {
+									"description": "",
+									"id": "/properties/properties/properties/products",
+									"items": {
+										"description": "",
+										"id": "/properties/properties/properties/products/items",
+										"type": "object"
+									},
+									"type": "array"
+								},
+								"revenue": {
+									"description": "Revenue ($) associated with the transaction (excluding shipping and tax)",
+									"id": "/properties/properties/properties/revenue",
+									"type": "number"
+								},
+								"shipping": {
+									"description": "",
+									"id": "/properties/properties/properties/shipping",
+									"type": "number"
+								},
+								"subtotal": {
+									"description": "Order total after discounts but before taxes and shipping",
+									"id": "/properties/properties/properties/subtotal",
+									"type": "number"
+								},
+								"tax": {
+									"description": "",
+									"id": "/properties/properties/properties/tax",
+									"type": "number"
+								},
+								"total": {
+									"description": "\tRevenue ($) with discounts and coupons added in. Note that our Google Analytics Ecommerce destination accepts total or revenue, but not both. For better flexibility and total control over tracking, we let you decide how to calculate how coupons and discounts are applied",
+									"id": "/properties/properties/properties/total",
+									"type": "number"
+								}
+							}
+						}
+					}
+				},
+				"createdAt": "2022-06-30T16:37:53.000Z",
+				"updatedAt": "2022-06-30T16:37:53.000Z",
+				"deprecatedAt": "0001-01-01T00:00:00.000Z"
+			},
+			{
+				"key": "Order Updated",
+				"type": "TRACK",
+				"version": 1,
+				"jsonSchema": {
+					"$schema": "http://json-schema.org/draft-07/schema#",
+					"type": "object",
+					"properties": {
+						"context": {},
+						"traits": {
+							"type": "object"
+						},
+						"properties": {
+							"type": "object",
+							"properties": {
+								"currency": {
+									"description": "",
+									"id": "/properties/properties/properties/currency",
+									"type": "string"
+								},
+								"order_id": {
+									"description": "",
+									"id": "/properties/properties/properties/order_id",
+									"type": "string"
+								},
+								"products": {
+									"description": "",
+									"id": "/properties/properties/properties/products",
+									"type": "array"
+								},
+								"revenue": {
+									"description": "Revenue ($) associated with the transaction (excluding shipping and tax)",
+									"id": "/properties/properties/properties/revenue",
+									"type": "number"
+								},
+								"shipping": {
+									"description": "",
+									"id": "/properties/properties/properties/shipping",
+									"type": "number"
+								},
+								"tax": {
+									"description": "",
+									"id": "/properties/properties/properties/tax",
+									"type": "number"
+								},
+								"total": {
+									"description": "Revenue ($) with discounts and coupons added in Note that our Google Analytics Ecommerce destination accepts total or revenue, but not both. For better flexibility and total control over tracking, we let you decide how to calculate how coupons and discounts are applied",
+									"id": "/properties/properties/properties/total",
+									"type": "number"
+								}
+							}
+						}
+					}
+				},
+				"createdAt": "2022-06-30T16:37:53.000Z",
+				"updatedAt": "2022-06-30T16:37:53.000Z",
+				"deprecatedAt": "0001-01-01T00:00:00.000Z"
+			},
+			{
+				"key": "Payment Info Entered",
+				"type": "TRACK",
+				"version": 1,
+				"jsonSchema": {
+					"$schema": "http://json-schema.org/draft-07/schema#",
+					"type": "object",
+					"properties": {
+						"context": {},
+						"traits": {
+							"type": "object"
+						},
+						"properties": {
+							"type": "object",
+							"properties": {
+								"checkout_id": {
+									"description": "",
+									"id": "/properties/properties/properties/checkout_id",
+									"type": "string"
+								},
+								"order_id": {
+									"description": "",
+									"id": "/properties/properties/properties/order_id",
+									"type": "string"
+								},
+								"payment_method": {
+									"description": "",
+									"id": "/properties/properties/properties/payment_method",
+									"type": "string"
+								},
+								"shipping_method": {
+									"description": "",
+									"id": "/properties/properties/properties/shipping_method",
+									"type": "string"
+								},
+								"step": {
+									"description": "",
+									"id": "/properties/properties/properties/step",
+									"type": "number"
+								}
+							}
+						}
+					}
+				},
+				"createdAt": "2022-06-30T16:37:53.000Z",
+				"updatedAt": "2022-06-30T16:37:53.000Z",
+				"deprecatedAt": "0001-01-01T00:00:00.000Z"
+			},
+			{
+				"key": "Product Added",
+				"type": "TRACK",
+				"version": 1,
+				"jsonSchema": {
+					"$schema": "http://json-schema.org/draft-07/schema#",
+					"type": "object",
+					"properties": {
+						"context": {},
+						"traits": {
+							"type": "object"
+						},
+						"properties": {
+							"type": "object",
+							"properties": {
+								"brand": {
+									"description": "",
+									"id": "/properties/properties/properties/brand",
+									"type": "string"
+								},
+								"cart_id": {
+									"description": "",
+									"id": "/properties/properties/properties/cart_id",
+									"type": "string"
+								},
+								"category": {
+									"description": "",
+									"id": "/properties/properties/properties/category",
+									"type": "string"
+								},
+								"name": {
+									"description": "",
+									"id": "/properties/properties/properties/name",
+									"type": "string"
+								},
+								"price": {
+									"description": "",
+									"id": "/properties/properties/properties/price",
+									"type": "number"
+								},
+								"product_id": {
+									"description": "",
+									"id": "/properties/properties/properties/product_id",
+									"type": "string"
+								},
+								"quantity": {
+									"description": "",
+									"id": "/properties/properties/properties/quantity",
+									"type": "number"
+								},
+								"sku": {
+									"description": "",
+									"id": "/properties/properties/properties/sku",
+									"type": "string"
+								}
+							}
+						}
+					}
+				},
+				"createdAt": "2022-06-30T16:37:53.000Z",
+				"updatedAt": "2022-06-30T16:37:53.000Z",
+				"deprecatedAt": "0001-01-01T00:00:00.000Z"
+			},
+			{
+				"key": "Product Clicked",
+				"type": "TRACK",
+				"version": 1,
+				"jsonSchema": {
+					"$schema": "http://json-schema.org/draft-07/schema#",
+					"type": "object",
+					"properties": {
+						"context": {},
+						"traits": {
+							"type": "object"
+						},
+						"properties": {
+							"type": "object",
+							"properties": {
+								"brand": {
+									"description": "",
+									"id": "/properties/properties/properties/brand",
+									"type": "object"
+								},
+								"category": {
+									"description": "",
+									"id": "/properties/properties/properties/category",
+									"type": "object"
+								},
+								"name": {
+									"description": "",
+									"id": "/properties/properties/properties/name",
+									"type": "object"
+								},
+								"price": {
+									"description": "",
+									"id": "/properties/properties/properties/price",
+									"type": "object"
+								},
+								"product_id": {
+									"description": "",
+									"id": "/properties/properties/properties/product_id",
+									"type": "object"
+								},
+								"sku": {
+									"description": "",
+									"id": "/properties/properties/properties/sku",
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"createdAt": "2022-06-30T16:37:53.000Z",
+				"updatedAt": "2022-06-30T16:37:53.000Z",
+				"deprecatedAt": "0001-01-01T00:00:00.000Z"
+			},
+			{
+				"key": "Product List Viewed",
+				"type": "TRACK",
+				"version": 1,
+				"jsonSchema": {
+					"$schema": "http://json-schema.org/draft-07/schema#",
+					"type": "object",
+					"properties": {
+						"context": {},
+						"traits": {
+							"type": "object"
+						},
+						"properties": {
+							"type": "object",
+							"properties": {
+								"category": {
+									"description": "Product category",
+									"id": "/properties/properties/properties/category",
+									"type": "string"
+								},
+								"list_id": {
+									"description": "Product list id",
+									"id": "/properties/properties/properties/list_id",
+									"type": "string"
+								},
+								"products": {
+									"description": "Products array",
+									"id": "/properties/properties/properties/products",
+									"items": {
+										"description": "Product",
+										"id": "/properties/properties/properties/products/items",
+										"type": "object"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"createdAt": "2022-06-30T16:37:53.000Z",
+				"updatedAt": "2022-06-30T16:37:53.000Z",
+				"deprecatedAt": "0001-01-01T00:00:00.000Z"
+			},
+			{
+				"key": "Product Removed",
+				"type": "TRACK",
+				"version": 1,
+				"jsonSchema": {
+					"$schema": "http://json-schema.org/draft-07/schema#",
+					"type": "object",
+					"properties": {
+						"context": {},
+						"traits": {
+							"type": "object"
+						},
+						"properties": {
+							"type": "object",
+							"properties": {
+								"cart_id": {
+									"description": "",
+									"id": "/properties/properties/properties/cart_id",
+									"type": "string"
+								}
+							}
+						}
+					}
+				},
+				"createdAt": "2022-06-30T16:37:53.000Z",
+				"updatedAt": "2022-06-30T16:37:53.000Z",
+				"deprecatedAt": "0001-01-01T00:00:00.000Z"
+			},
+			{
+				"key": "Product Viewed",
+				"type": "TRACK",
+				"version": 1,
+				"jsonSchema": {
+					"$schema": "http://json-schema.org/draft-07/schema#",
+					"type": "object",
+					"properties": {
+						"context": {},
+						"traits": {
+							"type": "object"
+						},
+						"properties": {
+							"type": "object",
+							"properties": {
+								"brand": {
+									"description": "",
+									"id": "/properties/properties/properties/brand",
+									"type": "string"
+								},
+								"category": {
+									"description": "",
+									"id": "/properties/properties/properties/category",
+									"type": "string"
+								},
+								"name": {
+									"description": "",
+									"id": "/properties/properties/properties/name",
+									"type": "string"
+								},
+								"price": {
+									"description": "",
+									"id": "/properties/properties/properties/price",
+									"type": "number"
+								},
+								"product_id": {
+									"description": "",
+									"id": "/properties/properties/properties/product_id",
+									"type": "string"
+								},
+								"sku": {
+									"description": "",
+									"id": "/properties/properties/properties/sku",
+									"type": "string"
+								}
+							}
+						}
+					}
+				},
+				"createdAt": "2022-06-30T16:37:53.000Z",
+				"updatedAt": "2022-06-30T16:37:53.000Z",
+				"deprecatedAt": "0001-01-01T00:00:00.000Z"
+			}
+		],
+		"pagination": {
+			"current": "MA==",
+			"totalEntries": 14
+		}
+	}
+}
