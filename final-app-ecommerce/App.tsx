@@ -29,6 +29,8 @@ const segmentClient = createClient({
 
 segmentClient.add({plugin: new IdfaPlugin()});
 segmentClient.add({plugin: new AdvertisingIdPlugin()});
+
+//make sure to add your API_KEY in ios/GoogleService-Info.plist
 segmentClient.add({plugin: new FirebasePlugin()});
 
 const App = () => {
