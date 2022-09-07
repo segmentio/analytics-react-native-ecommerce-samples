@@ -11,12 +11,11 @@ import {
   OrderCompletedPage,
 } from './views';
 import { Routes } from './routes';
-
 import {
   createClient,
   AnalyticsProvider,
 } from '@segment/analytics-react-native';
-
+import 'nopp';
 import { IdfaPlugin } from '@segment/analytics-react-native-plugin-idfa';
 import { AdvertisingIdPlugin } from '@segment/analytics-react-native-plugin-advertising-id';
 import { FirebasePlugin } from '@segment/analytics-react-native-plugin-firebase';
