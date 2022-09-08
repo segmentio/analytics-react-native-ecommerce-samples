@@ -15,10 +15,11 @@ import {
   createClient,
   AnalyticsProvider,
 } from '@segment/analytics-react-native';
-import 'nopp';
 import { IdfaPlugin } from '@segment/analytics-react-native-plugin-idfa';
 import { AdvertisingIdPlugin } from '@segment/analytics-react-native-plugin-advertising-id';
 import { FirebasePlugin } from '@segment/analytics-react-native-plugin-firebase';
+import 'nopp';
+
 
 const segmentClient = createClient({
   writeKey: 'WRITE_KEY',
