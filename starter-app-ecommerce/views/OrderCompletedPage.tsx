@@ -7,17 +7,29 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
+import {useSelector} from 'react-redux';
+import {RootState} from '../storage/configureStore';
+import {useDispatch} from 'react-redux';
 import {LogoComponent} from '../components';
 import {Colors, Fonts, Design} from '../constants';
 import {OrderNavProp} from '../types';
 import {Routes} from '../routes';
+import { resetCart } from '../storage/cart';
 
 const screenWidth = Dimensions.get('screen').width;
 
 export const OrderCompletedPage = ({navigation}: OrderNavProp) => {
+
+  const {products} = useSelector((state: RootState) => state.cart);
+
+  const dispatch = useDispatch();
+
   const onPressHome = () => {
     navigation.navigate(Routes.Home);
+    dispatch(resetCart([]));
+
   };
+
   return (
     <ScrollView style={styles.page}>
       <LogoComponent />

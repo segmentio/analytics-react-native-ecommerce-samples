@@ -1414,28 +1414,28 @@
     redux-thunk "^2.4.1"
     reselect "^4.1.5"
 
-"@segment/analytics-react-native-plugin-advertising-id@^1.0.2":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@segment/analytics-react-native-plugin-advertising-id/-/analytics-react-native-plugin-advertising-id-1.1.0.tgz#16a3891680c9117c90b080c630779a40165e4903"
-  integrity sha512-6mS4kTSLOxlY3MsZhwQhn9maJkSzPKiNGKLW5xCAdd7enUnBOLLSzfg0vGsMhZHRC0NVU/RJn1N51alg8PPCxQ==
+"@segment/analytics-react-native-plugin-advertising-id@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@segment/analytics-react-native-plugin-advertising-id/-/analytics-react-native-plugin-advertising-id-1.1.1.tgz#646f38d01fa8a93210edf859fd777803847a36cb"
+  integrity sha512-oqAKnAwtWmfdT4NTyI2pUVWhPp0llGuDr6Dw29yRFWSohfnlbfPz2hHwiko+8Z27o13WcBZw+nY/sz+JMozsjw==
 
-"@segment/analytics-react-native-plugin-firebase@^0.3.2":
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/@segment/analytics-react-native-plugin-firebase/-/analytics-react-native-plugin-firebase-0.3.2.tgz#4194fa7fc90b79b02baca36cbbe033ed0e8a9b19"
-  integrity sha512-HCDkJEIrP8thtJzmxaJRdLcRdE3IU2vVLTKY7yV9XIGu7EkA9CVp15evdHSg4ITMQqr/RcwcFn5/mS9GoCtWuA==
+"@segment/analytics-react-native-plugin-firebase@^0.3.3":
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/@segment/analytics-react-native-plugin-firebase/-/analytics-react-native-plugin-firebase-0.3.3.tgz#3fe34f32b3237280f1cd3625c34816d406c66271"
+  integrity sha512-ujGhPkZbYEiTzDl3pxq9vNGnjTkPHN+PYgWSLG7CZh7iNn7O9nkz7CMFI/s/1fTU0jEDL6KbfcmbZcECVwjjUw==
   dependencies:
     "@react-native-firebase/analytics" "^15.4.0"
     "@react-native-firebase/app" "^15.4.0"
 
-"@segment/analytics-react-native-plugin-idfa@^0.4.1":
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/@segment/analytics-react-native-plugin-idfa/-/analytics-react-native-plugin-idfa-0.4.1.tgz#884a25ecbed3a09f94b637d68b08a6868b20076c"
-  integrity sha512-qwjNMZeq2MnKqaLcufdf5m7sIzzxFn8Ib3r9w9YpoBX6TM4HddTZv5jFsqQyJTk8WNtJsXsFgIJnWqkCF9xt0g==
+"@segment/analytics-react-native-plugin-idfa@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@segment/analytics-react-native-plugin-idfa/-/analytics-react-native-plugin-idfa-0.5.0.tgz#6b77ef52770d00e958898364998852beaf9089b3"
+  integrity sha512-pb1h1j/Cz3ypM/D7dnDgABcYBy4jEia3q5mA9ZdVEfX2nZMkAsqjMc8cxJ6u4aQTSC8Bid1xOE1sXpK1VGEIsA==
 
-"@segment/analytics-react-native@^2.7.0":
-  version "2.7.1"
-  resolved "https://registry.yarnpkg.com/@segment/analytics-react-native/-/analytics-react-native-2.7.1.tgz#ca611731dc7bdedd2ded7f8bf6a5de2b42e871f4"
-  integrity sha512-/0PmHq2huIl7b0LXJZh75U01h1/RdrPNyQPfCfnqFSVea+4sBGMH7u9FG48rrh6B1fZcb/unlrnksEdjkgnVRg==
+"@segment/analytics-react-native@^2.8.0":
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/@segment/analytics-react-native/-/analytics-react-native-2.8.0.tgz#d427346b40dfe6069da8d3812632802a7742a449"
+  integrity sha512-NTsPmd25CG4pRMy+V+eunH07SQx2W+yjICbWS5oP6G4T9XpyXjLC7nJQAm5IGCsuHkpLNGJJdIkRM0M+GCZrBA==
   dependencies:
     "@react-native-async-storage/async-storage" "^1.15.17"
     "@segment/sovran-react-native" "^0.4.4"
