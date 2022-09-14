@@ -472,10 +472,10 @@ PODS:
   - RNScreens (3.17.0):
     - React-Core
     - React-RCTImage
-  - segment-analytics-react-native (2.7.1):
+  - segment-analytics-react-native (2.8.0):
     - React-Core
     - sovran-react-native
-  - segment-analytics-react-native-plugin-idfa (0.4.1):
+  - segment-analytics-react-native-plugin-idfa (0.5.0):
     - React-Core
   - SocketRocket (0.6.0)
   - sovran-react-native (0.4.4):
@@ -722,8 +722,8 @@ SPEC CHECKSUMS:
   RNFBAnalytics: a38c9ae20b61b7b3dbbad40b4fe3c7dc984799c3
   RNFBApp: 1b3411b5134a4e27e92fbf9df7f97603f6c7029a
   RNScreens: 0df01424e9e0ed7827200d6ed1087ddd06c493f9
-  segment-analytics-react-native: d3600ae853119d465d7f5b5884ef1c776796138a
-  segment-analytics-react-native-plugin-idfa: 68fbc668f277eaf2e1e2673c6a5543ea857a1671
+  segment-analytics-react-native: f550cb6d5d5f67eb8099f78108f8ded1052cd5e4
+  segment-analytics-react-native-plugin-idfa: 00f56afe6a185acad542caf00485fa0c35b53c47
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   sovran-react-native: 5f9715a62b50008d72c0cf904cb08c8377777b62
   Yoga: 99652481fcd320aefa4a7ef90095b95acd181952

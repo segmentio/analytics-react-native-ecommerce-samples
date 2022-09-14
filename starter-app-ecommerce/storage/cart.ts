@@ -70,10 +70,13 @@ const cartSlice = createSlice({
         cart.checkoutId = id.concat('-checkout');
         cart.orderId = id.concat('order');
       }
+    },
+    resetCart(state, action: PayloadAction<[]>) {
+      state.products = action.payload;
     }
   },
 });
 
-export const {addProduct, removeProduct, decreaseProductQuantity, updateCart} =
+export const {addProduct, removeProduct, decreaseProductQuantity, updateCart, resetCart} =
   cartSlice.actions;
 export default cartSlice.reducer;
