@@ -1,6 +1,6 @@
 # Analytics React Native E-Commerce Samples
 
-The apps in this repository were built in conjunction with the `Implementing React Native 2.0` blog post. Check out the blog for a detailed overview of the new architecture and complete implementation guide. 
+The apps in this repository were built in conjunction with the [Implementing React Native 2.0 blog post](https://segment.com/blog/analytics-react-native-2-blog/). Check out the blog for a detailed overview of the new architecture and complete implementation guide. 
 
 ## Usage
 
