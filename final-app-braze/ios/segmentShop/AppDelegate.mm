@@ -1,8 +1,18 @@
 #import "AppDelegate.h"
-
+#import <React/RCTLinkingManager.h>
 #import <React/RCTBundleURLProvider.h>
+#import <React/RCTRootView.h>
+#import <React/RCTBridge.h>
+#import <React/RCTEventDispatcher.h>
+#import <React/RCTBundleURLProvider.h>
+#import "BrazeReactUtils.h"
+#import "BrazeReactBridge.h"
+#import <BrazeKit/BrazeKit-Swift.h>
 
 @implementation AppDelegate
+
+static NSString *const apiKey = @"c3cd8a5e-5aed-498d-8375-92ef3d08b891";
+static NSString *const endpoint = @"sdk.iad-01.braze.com";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -10,9 +20,34 @@
   // You can add your custom initial props in the dictionary below.
   // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
-
+  
+  NSURL *jsCodeLocation =
+  [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index"];
+  RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
+                                                      moduleName:self.moduleName
+                                               initialProperties:nil
+                                                   launchOptions:launchOptions];
+  
+  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+  UIViewController *rootViewController = [UIViewController new];
+  rootViewController.view = rootView;
+  self.window.rootViewController = rootViewController;
+  [self.window makeKeyAndVisible];
+  
+  // Setup Braze
+  
+  BRZConfiguration *configuration = [[BRZConfiguration alloc] initWithApiKey:apiKey
+                                                                    endpoint:endpoint];
+  // - Enable logging and customize the configuration here
+  configuration.logger.level = BRZLoggerLevelInfo;
+  Braze *braze = [BrazeReactBridge initBraze:configuration];
+  AppDelegate.braze = braze;
+  
+  
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
+
+
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {
@@ -33,4 +68,16 @@
   return true;
 }
 
+
+//#pragma mark - AppDelegate.braze
+
+static Braze *_braze = nil;
+
++ (Braze *)braze {
+  return _braze;
+}
+
++ (void)setBraze:(Braze *)braze {
+  _braze = braze;
+}
 @end

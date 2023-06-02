@@ -14,11 +14,13 @@ import {CheckoutNavProp} from '../types';
 import {Routes} from '../routes';
 import {useSelector} from 'react-redux';
 import {RootState} from '../storage/configureStore';
+import { useAnalytics } from '@segment/analytics-react-native';
 import {calculatePrice} from '../helpers';
 
 export const CheckoutPage = ({navigation}: CheckoutNavProp) => {
   const {products, checkoutDetails} = useSelector((state: RootState) => state.cart);
   const {styles} = useStyle();
+  const{track} = useAnalytics();
   const [emailText, onChangeEmailText] = React.useState('');
   const [nameText, onChangeNameText] = React.useState('');
   const [addressText, onChangeAddressText] = React.useState('');
@@ -38,6 +40,8 @@ export const CheckoutPage = ({navigation}: CheckoutNavProp) => {
       shippingMethod: 'standard',
       step: 1,
     };
+  
+    track('Checkout Step Viewed', checkoutProperties);
   });
 
   let initialPrice: number = 0;
@@ -70,6 +74,10 @@ export const CheckoutPage = ({navigation}: CheckoutNavProp) => {
       revenue: totalPrice,
       tax: estimatedTax,
     };
+
+    track('Checkout Step Completed', paymentProperties);
+    track('Payment Info Entered', paymentProperties);
+    track('Order Completed', orderProperties);
 
     navigation.navigate(Routes.OrderCompleted);
   };
