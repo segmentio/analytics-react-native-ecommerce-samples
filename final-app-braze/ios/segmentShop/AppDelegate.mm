@@ -11,8 +11,8 @@
 
 @implementation AppDelegate
 
-static NSString *const apiKey = @"c3cd8a5e-5aed-498d-8375-92ef3d08b891";
-static NSString *const endpoint = @"sdk.iad-01.braze.com";
+static NSString *const apiKey = @"<YOUR_BRAZE_API_KEY>";
+static NSString *const endpoint = @"<YOUR_BRAZE_ENDPOINT>";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
