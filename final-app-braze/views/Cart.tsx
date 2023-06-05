@@ -14,6 +14,7 @@ import {shippingPrice} from '../data/productInfo';
 import type {CartNavProp, Product} from '../types';
 import {calculatePrice} from '../helpers';
 import {Routes} from '../routes';
+import { useAnalytics } from '@segment/analytics-react-native';
 import {useDispatch} from 'react-redux';
 
 
@@ -21,6 +22,7 @@ import {useDispatch} from 'react-redux';
 export const Cart = ({navigation}: CartNavProp) => {
   const {products, checkoutDetails} = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
+  const {track} = useAnalytics();
 
   let initialPrice: number = 0;
   let totalPrice: string = '';
@@ -31,6 +33,7 @@ export const Cart = ({navigation}: CartNavProp) => {
       cartId: checkoutDetails.cartId,
       products: products,
     }
+    track('Cart Viewed', cartProperties );
   });
 
   products.forEach((product: Product) => {
@@ -51,6 +54,7 @@ export const Cart = ({navigation}: CartNavProp) => {
       tax: estimatedTax,
       value: totalPrice,
     }
+    track('Checkout Started', checkoutProperties);
     navigation.navigate(Routes.Checkout);
   };
 

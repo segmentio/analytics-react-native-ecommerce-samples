@@ -1,5 +1,15 @@
 PODS:
   - boost (1.76.0)
+  - braze-react-native-sdk (5.0.0):
+    - BrazeKit (~> 6.2.0)
+    - BrazeLocation (~> 6.2.0)
+    - BrazeUI (~> 6.2.0)
+    - React-Core
+  - BrazeKit (6.2.0)
+  - BrazeLocation (6.2.0):
+    - BrazeKit (= 6.2.0)
+  - BrazeUI (6.2.0):
+    - BrazeKit (= 6.2.0)
   - CocoaAsyncSocket (7.6.5)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.71.7)
@@ -329,7 +339,7 @@ PODS:
   - React-jsinspector (0.71.7)
   - React-logger (0.71.7):
     - glog
-  - react-native-get-random-values (1.8.0):
+  - react-native-get-random-values (1.9.0):
     - React-Core
   - react-native-safe-area-context (4.5.3):
     - RCT-Folly
@@ -426,13 +436,19 @@ PODS:
   - RNScreens (3.20.0):
     - React-Core
     - React-RCTImage
+  - segment-analytics-react-native (2.14.0):
+    - React-Core
+    - sovran-react-native
   - SocketRocket (0.6.0)
+  - sovran-react-native (1.0.3):
+    - React-Core
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
 
 DEPENDENCIES:
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
+  - "braze-react-native-sdk (from `../node_modules/@braze/react-native-sdk`)"
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
@@ -494,10 +510,15 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - RNScreens (from `../node_modules/react-native-screens`)
+  - "segment-analytics-react-native (from `../node_modules/@segment/analytics-react-native`)"
+  - "sovran-react-native (from `../node_modules/@segment/sovran-react-native`)"
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   trunk:
+    - BrazeKit
+    - BrazeLocation
+    - BrazeUI
     - CocoaAsyncSocket
     - Flipper
     - Flipper-Boost-iOSX
@@ -517,6 +538,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   boost:
     :podspec: "../node_modules/react-native/third-party-podspecs/boost.podspec"
+  braze-react-native-sdk:
+    :path: "../node_modules/@braze/react-native-sdk"
   DoubleConversion:
     :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
   FBLazyVector:
@@ -589,11 +612,19 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-async-storage/async-storage"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  segment-analytics-react-native:
+    :path: "../node_modules/@segment/analytics-react-native"
+  sovran-react-native:
+    :path: "../node_modules/@segment/sovran-react-native"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
   boost: 57d2868c099736d80fcd648bf211b4431e51a558
+  braze-react-native-sdk: 9a9237d785328c97c8dbc1836c3852d52469b5a2
+  BrazeKit: 23ee5843d5292ebbc468570f14dbe0f02fdd76f1
+  BrazeLocation: 55378b40acc54e225963b8de9e559c5ce2d30e3f
+  BrazeUI: 4d51f2e200ce561fbd477f1c2a756dcd2ebb42a4
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
   FBLazyVector: a89a0525bc7ca174675045c2b492b5280d5a2470
@@ -626,7 +657,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: eaa5f71eb8f6861cf0e57f1a0f52aeb020d9e18e
   React-jsinspector: 9885f6f94d231b95a739ef7bb50536fb87ce7539
   React-logger: 3f8ebad1be1bf3299d1ab6d7f971802d7395c7ef
-  react-native-get-random-values: a6ea6a8a65dc93e96e24a11105b1a9c8cfe1d72a
+  react-native-get-random-values: dee677497c6a740b71e5612e8dbd83e7539ed5bb
   react-native-safe-area-context: b8979f5eda6ed5903d4dbc885be3846ea3daa753
   React-perflogger: 2d505bbe298e3b7bacdd9e542b15535be07220f6
   React-RCTActionSheet: 0e96e4560bd733c9b37efbf68f5b1a47615892fb
@@ -643,7 +674,9 @@ SPEC CHECKSUMS:
   ReactCommon: dbfbe2f7f3c5ce4ce44f43f2fd0d5950d1eb67c5
   RNCAsyncStorage: b90b71f45b8b97be43bc4284e71a6af48ac9f547
   RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
+  segment-analytics-react-native: 83f46e22fcd44a85f450464ad98e6c8e128e3f8e
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
+  sovran-react-native: 217270c2c5d1ad45b2f60e31b06b18d478018202
   Yoga: d56980c8914db0b51692f55533409e844b66133c
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 

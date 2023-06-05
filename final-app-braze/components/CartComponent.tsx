@@ -8,12 +8,14 @@ import { removeProduct, addProduct, decreaseProductQuantity } from '../storage/c
 import {Product} from '../types';
 import {useSelector} from 'react-redux';
 import {RootState} from '../storage/configureStore';
+import { useAnalytics } from '@segment/analytics-react-native';
 
 const removeItemIcon = require('../assets/trash-can.png');
 
 export const CartComponent = (product: Product) => {
   const {products, checkoutDetails} = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
+  const {track} = useAnalytics();
 
   let productPrice = product.price + product.grip.price;
 
@@ -26,14 +28,18 @@ export const CartComponent = (product: Product) => {
   }
   const onDecreaseQuantity = () => {
     dispatch(decreaseProductQuantity(product.id));
+    track('Order Updated', orderUpdatedProperties);
   };
 
   const onIncreaseQuantity = () => {
     dispatch(addProduct(product));
+    track('Order Updated', orderUpdatedProperties);
+
   };
 
   const handleDelete = () => {
     dispatch(removeProduct(product.id));
+    track('Product Removed', product);
   };
 
   return (

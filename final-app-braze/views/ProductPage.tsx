@@ -19,6 +19,7 @@ import {addProduct, updateCart} from '../storage/cart';
 import {ProductInfo} from '../data/productInfo';
 import {Colors, Fonts, Design, productConstants} from '../constants';
 import {Product, ProductNavProp} from '../types';
+import { useAnalytics } from '@segment/analytics-react-native';
 
 const PRICE = '$60';
 const screenWidth = Dimensions.get('screen').width;
@@ -30,6 +31,7 @@ export const ProductPage = ({navigation, route}: ProductNavProp) => {
   const {products} = useSelector((state: RootState) => state.cart);
 
   const dispatch = useDispatch();
+  const {track} = useAnalytics();
 
   useEffect(() => {
     let trackProperties = {
@@ -39,6 +41,7 @@ export const ProductPage = ({navigation, route}: ProductNavProp) => {
       brand: 'Red F'
     }
 
+    track('Product Viewed', trackProperties);
   })
 
   const deckOptions = deckSizes.map((size, index) => {
@@ -97,6 +100,7 @@ export const ProductPage = ({navigation, route}: ProductNavProp) => {
         id: Date.now(),
       };
       dispatch(addProduct(product));
+      track('Product Added', product);
       setCount(0);
       setGrip(undefined);
       setDeck(undefined);

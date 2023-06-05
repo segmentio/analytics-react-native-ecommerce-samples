@@ -15,6 +15,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {Colors, Fonts} from '../constants';
 import {HomeNavProp} from '../types';
 import {Routes} from '../routes';
+import { useAnalytics } from '@segment/analytics-react-native';
 
 const backgroundImage = require('../assets/seigaiha.png');
 
@@ -49,12 +50,15 @@ const Header = () => {
 };
 
 export const Home = ({navigation}: HomeNavProp) => {
+  const {track} = useAnalytics();
 
   useEffect(() => {
     let trackProperties = {
       category: 'Skate Decks',
       products: ProductData,
     };
+
+    track('Product List Viewed', trackProperties);
   });
 
   const onPress = (name: string) => {
@@ -68,6 +72,8 @@ export const Home = ({navigation}: HomeNavProp) => {
     navigation.navigate(Routes.ProductPage, {
       productName: name,
     });
+
+    track('Product Clicked', productProperties);
   };
 
   //@ts-ignore
