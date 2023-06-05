@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="com_braze_api_key">32c83951-e8af-4c5e-965d-590050af25d7</string>
+<string translatable="false" name="com_braze_custom_endpoint">sdk.iad-01.braze.com</string>
+</resources>
