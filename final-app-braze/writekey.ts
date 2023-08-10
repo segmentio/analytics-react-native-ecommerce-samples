@@ -1,2 +1,0 @@
-export const IOS_WRITE_KEY = 'QRoxZ8b8m8DUdUV2B8y1FCSU7cF3zNqN';
-export const ANDROID_WRITE_KEY = 'OsEmIKRGAzfn2xRN7F7luvU6WkQSFXCq';
