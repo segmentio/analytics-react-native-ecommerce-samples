@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, Button, Alert } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Provider} from 'react-redux';
@@ -11,6 +11,7 @@ import {
   CheckoutPage,
   OrderCompletedPage,
 } from './views';
+import { CouponButton } from './components/CouponButton';
 import { Routes } from './routes';
 import {
   createClient,
@@ -18,7 +19,7 @@ import {
   CountFlushPolicy,
 } from '@segment/analytics-react-native';
 import { BrazePlugin } from '@segment/analytics-react-native-plugin-braze';
-import { IOS_WRITE_KEY, ANDROID_WRITE_KEY } from './write-key';
+import { IOS_WRITE_KEY, ANDROID_WRITE_KEY } from './writekey';
 
 let writeKey = Platform.OS === 'ios' ? IOS_WRITE_KEY: ANDROID_WRITE_KEY
 
@@ -33,6 +34,8 @@ const segmentClient = createClient({
 })
 
 segmentClient.add({plugin: new BrazePlugin()})
+segmentClient.identify('brazeUserId1');
+
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -42,7 +45,14 @@ const App = () => {
       <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator>
-            <Stack.Screen name={Routes.Home} component={Home} />
+            <Stack.Screen name={Routes.Home} 
+            component={Home} 
+            options={{
+              headerRight: () => (
+             < CouponButton />
+              ),
+            }}
+            />
             <Stack.Screen
               name={Routes.ProductPage}
               component={ProductPage}
