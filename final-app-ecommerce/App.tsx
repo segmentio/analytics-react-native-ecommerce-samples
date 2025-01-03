@@ -18,7 +18,9 @@ import {
 import { IdfaPlugin } from '@segment/analytics-react-native-plugin-idfa';
 import { AdvertisingIdPlugin } from '@segment/analytics-react-native-plugin-advertising-id';
 import { FirebasePlugin } from '@segment/analytics-react-native-plugin-firebase';
-import 'nopp';
+//import 'nopp';
+import {RootStackParamList} from './types';
+
 
 
 const segmentClient = createClient({
@@ -34,7 +36,7 @@ segmentClient.add({plugin: new AdvertisingIdPlugin()});
 segmentClient.add({plugin: new FirebasePlugin()});
 
 const App = () => {
-  const Stack = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator<RootStackParamList>();
 
   return (
     <AnalyticsProvider client={segmentClient}>
