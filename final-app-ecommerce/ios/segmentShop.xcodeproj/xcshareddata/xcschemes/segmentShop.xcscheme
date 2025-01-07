@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1340"
+   LastUpgradeVersion = "1210"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "segmentShop.app"
-               BlueprintName = "segmentShop"
-               ReferencedContainer = "container:segmentShop.xcodeproj">
+               BuildableName = "SegmentShop.app"
+               BlueprintName = "SegmentShop"
+               ReferencedContainer = "container:SegmentShop.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "segmentShopTests.xctest"
-               BlueprintName = "segmentShopTests"
-               ReferencedContainer = "container:segmentShop.xcodeproj">
+               BuildableName = "SegmentShopTests.xctest"
+               BlueprintName = "SegmentShopTests"
+               ReferencedContainer = "container:SegmentShop.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,17 +55,11 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "segmentShop.app"
-            BlueprintName = "segmentShop"
-            ReferencedContainer = "container:segmentShop.xcodeproj">
+            BuildableName = "SegmentShop.app"
+            BlueprintName = "SegmentShop"
+            ReferencedContainer = "container:SegmentShop.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-FIRDebugEnabled"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -78,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "segmentShop.app"
-            BlueprintName = "segmentShop"
-            ReferencedContainer = "container:segmentShop.xcodeproj">
+            BuildableName = "SegmentShop.app"
+            BlueprintName = "SegmentShop"
+            ReferencedContainer = "container:SegmentShop.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

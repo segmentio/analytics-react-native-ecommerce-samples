@@ -1,7 +1,7 @@
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import type {RouteProp} from '@react-navigation/native';
 
-type RootStackParamList = {
+export type RootStackParamList = {
   'Segment Shop': undefined;
   'Skate Decks': {productName: string};
   Cart: undefined;
